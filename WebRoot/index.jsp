@@ -5,7 +5,7 @@
 <%@ page import="org.apache.log4j.Logger"%>
 
 <%
-	String pageTitle = "重阳投资";
+	String pageTitle = "安洪投资";
 %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">

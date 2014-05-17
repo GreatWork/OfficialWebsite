@@ -44,7 +44,7 @@
 	<div id="page01" class="rightcontent wordbox" style="display: none;">
 
 		<div style="width: 625px;">
-			<strong>上海重阳投资管理有限公司</strong>
+			<strong>上海安洪投资管理有限公司</strong>
 			<br /> 地址：上海市浦东新区世纪大道8号国金中心北塔51楼
 			<br /> 邮编：200120 
 			<br /> 电话：86 21 20216666 

@@ -232,7 +232,7 @@ function ClickAccountManagement() {
 		%>
 		<div class="AccountManagementShow"
 			style="display: none; padding-top: 20px;">
-			重阳投资目前担任多只专户信托计划的投资顾问，为客户提供专属证券投资顾问服务。<br> 咨询电话：86 21 2021 6640
+			安洪投资目前担任多只专户信托计划的投资顾问，为客户提供专属证券投资顾问服务。<br> 咨询电话：86 21 2021 6640
 		</div>
 
 		<!--重阳1期投资经理简介 -->

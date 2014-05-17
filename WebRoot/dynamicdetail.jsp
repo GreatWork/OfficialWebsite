@@ -5,7 +5,7 @@
 <%@ page import="org.apache.log4j.Logger"%>
 
 <%
-	String pageTitle = "重阳动态";
+	String pageTitle = "安洪动态";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -44,8 +44,8 @@
 </div>
 <div class="wapper clearfix overhide">
 	<div class="subleft">
-		<a href="dynamic.jsp" class="on" id="menu01">重阳资讯</a> <a
-			href="dynamic.jsp?k=2" id="menu02">重阳视点</a>
+		<a href="dynamic.jsp" class="on" id="menu01">安洪资讯</a> 
+		<a href="dynamic.jsp?k=2" id="menu02">安洪视点</a>
 	</div>
 	<div class="rightcontent wordbox">
 		<table id="ctl00_cpContent_DataList1" cellspacing="0" border="0"

@@ -80,7 +80,7 @@
 </div>
 <div class="wapper clearfix overhide">
 	<div class="subleft">
-		<a id="menu01" class="on" href="recommend2.jsp">重阳推荐</a>
+		<a id="menu01" class="on" href="recommend2.jsp">安洪推荐</a>
 	</div>
 	<div class="rightcontent wordbox" style="text-indent: 2em;">
 		<table style="border-collapse: collapse;"
