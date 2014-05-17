@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="org.apache.log4j.Logger"%>
+<%@ page import="com.ow.DBDao"%>
+<%@ page import="com.ow.dto.NewsInfoDto"%>
+<%@ page import="com.ow.dto.ViewPointDto"%>
 
 <%
 	String pageTitle = "安洪投资";
@@ -44,28 +48,25 @@
 		<a href="#" class="a_left"></a> <a href="#" class="a_right"></a>
 	</div>
 </div>
+<%
+	DBDao dbDao = new DBDao();
+	dbDao.init();
+	List<NewsInfoDto> newsInfos=dbDao.getTheNewestFiveNewsInfo();
+	
+	dbDao.close();
+%>
 <div class="line"></div>
 <div class="wapper clearfix">
 	<div class="news_box fl mr50">
 		<h2 class="title_news">重阳动态</h2>
 		<a href="dynamic.jsp" target="_blank" class="a_more">MORE</a>
 		<ul class="news_ul">
-
-			<li><a target="_blank" href="dynamicdetails.jsp?id=7798">
-					重阳问答：IPO“二次重启”可能催化市场风格转换 </a> <span class="date">04-28</span></li>
-
-			<li><a target="_blank" href="dynamicdetails.jsp?id=7793&k=2">
-					2014年4月宏观分析报告：中国经济转型呈现积极信号 </a> <span class="date">04-22</span></li>
-
-			<li><a target="_blank" href="dynamicdetails.jsp?id=7788">
-					裘国根：未来两年投资策略的最优象限 </a> <span class="date">04-12</span></li>
-
-			<li><a target="_blank" href="dynamicdetails.jsp?id=7789">
-					重阳投资蝉联五届中国私募金牛奖 </a> <span class="date">04-12</span></li>
-
-			<li><a target="_blank" href="dynamicdetails.jsp?id=7782">
-					重阳系列产品2014年4月开放日温馨提示 </a> <span class="date">04-01</span></li>
-
+			<%for(NewsInfoDto newsInfo:newsInfos){%>		
+			<li><a target="_blank" href="dynamicdetails.jsp?id=<%=newsInfo.getId() %>>">
+					<%=newsInfo.getTitle() %>> </a> 
+				<span class="date"><%=formatTime(newsInfo.getCreateTime()) %>></span>
+			</li>
+			<%}%>							
 		</ul>
 	</div>
 	<div class="news_box fl">
@@ -126,6 +127,16 @@
 
 <%!
 	private static final Logger logger = Logger.getLogger("com.ow.index");
+
+	/* 时间格式化 */
+	public static String formatTime(final Date time) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if (time == null) {
+			return null;
+		}
+		String result = sdf.format(time);
+		return result;
+	}
 %>
 
 <jsp:include page="footer.jsp" />

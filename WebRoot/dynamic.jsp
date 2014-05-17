@@ -3,6 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="org.apache.log4j.Logger"%>
+<%@ page import="com.ow.DBDao"%>
 
 <%
 	String pageTitle = "安洪动态";
@@ -476,7 +477,11 @@
 </div>
 
 
-<%!private static final Logger logger = Logger.getLogger("com.chongyang.dynamic");%>
+<%!
+
+private static final Logger logger = Logger.getLogger("com.ow.dynamic");
+
+%>
 
 
 <script type="text/javascript">
