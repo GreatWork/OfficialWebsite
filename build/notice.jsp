@@ -5,7 +5,7 @@
 <%@ page import="org.apache.log4j.Logger"%>
 
 <%
-	String pageTitle = "重阳投资";
+	String pageTitle = "安洪投资";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +35,7 @@
 投资产品的价格及其收益存在涨跌变动，而过往的产品业绩数据并不预示其未来的表现，投资者不应依赖本网站所提供的数据做出投资决策，否则由投资者自行承担所有风险。 <br /><br />
 本网站所载的资料于刊载日期属恰当充分，您在阅读时资料的准确性或完整性已发生变化。本网站刊登的所有资料可予以更改或修订而毋须事前通知，尽管重阳投资并不承诺定期更新本网站内容。公司并不对第三者所提供之有关资料的准确性、充足性或完整性作出任何保证，公司或其股东及雇员概不对于本网站内第三者所提供之资料的任何错误或遗漏负任何法律责任。<br /><br />
 
-		<div align="right">上海重阳投资管理有限公司</div>
+		<div align="right">上海安洪投资管理有限公司</div>
 
         </div>
     </div>

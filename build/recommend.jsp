@@ -4,7 +4,7 @@
 	import="java.sql.*,javax.sql.*,javax.naming.*,com.ow.*"%>
 
 <%
-	String pageTitle = "重阳推荐";
+	String pageTitle = "安洪推荐";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -79,7 +79,7 @@
 </div>
 <div class="wapper clearfix overhide">
 	<div class="subleft">
-		<a href="recommend.jsp" class="on" id="menu01">重阳推荐</a>
+		<a href="recommend.jsp" class="on" id="menu01">安洪推荐</a>
 	</div>
 	<div id="page01" class="rightcontent wordbox" style="">
 		<div id="ctl00_cpContent_UpdatePanel1">

@@ -29,13 +29,6 @@
 	});
 </script>
 
-<!--[if lte IE 6]>  
-<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js"></script>
-<script type="text/javascript">  
-       DD_belatedPNG.fix('.a_left');   
-       DD_belatedPNG.fix('.a_right'); 
-</script>  
-<![endif]-->
 </head>
 
 <jsp:include page="header.jsp" />
@@ -51,24 +44,29 @@
 	<div id="page01" class="rightcontent wordbox" style="display: none;">
 
 		<div style="width: 625px;">
-			<strong>上海重阳投资管理有限公司</strong><br /> 地址：上海市浦东新区世纪大道8号国金中心北塔51楼<br />
-			邮编：200120 <br /> 电话：86 21 20216666 <br /> 传真：86 21 20216688 <br />
-			电邮：<a class="email" target="_blank"
-				href="mailto:chongyang@chongyang.net">chongyang@chongyang.net</a>
+			<strong>上海安洪投资管理有限公司</strong>
+			<br /> 地址：上海市浦东新区世纪大道8号国金中心北塔51楼
+			<br /> 邮编：200120 
+			<br /> 电话：86 21 20216666 
+			<br /> 传真：86 21 20216688 
+			<br /> 电邮：<a class="email" target="_blank" href="mailto:chongyang@chongyang.net">chongyang@chongyang.net</a>
 
 		</div>
 
-		<img src="img/contact/index_map.jpg" /> <br /> <br /> <br /> <strong>深圳办事处</strong><br />
-		地址：深圳市福田区中心四路1号嘉里建设广场2座15楼53室<br /> 邮编：518048 <br /> 电话：86 755
-		33043155 <br /> 传真：86 755 33043322 <br />
+		<img src="img/contact/index_map.jpg" /> 
+		<br /> 
+		<br /> 
+		<br /> 
+		
+		<strong>深圳办事处</strong>
+		<br /> 地址：深圳市福田区中心四路1号嘉里建设广场2座15楼53室
+		<br /> 邮编：518048 
+		<br /> 电话：86 755	33043155 
+		<br /> 传真：86 755 33043322 
+		<br />
 	</div>
 </div>
 
-
-
-
-<%!private static final Logger logger = Logger
-			.getLogger("com.chongyang.index");%>
 
 <jsp:include page="footer.jsp" />
 
