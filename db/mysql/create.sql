@@ -36,9 +36,15 @@ drop table if exists ProductInfo;
 create table if not exists ProductInfo(
 	proName varchar(255) primary key not null,
 	investManager varchar(255),
+	productManager varchar(255),
 	proInfo text);
 
 --投资经理表
 create table if not exists InvestManager(
 	mgrName varchar(255) primary key not null,
 	mgrInfo text);
+
+--产品经理表
+create table if not exists ProductManager(
+	mgrName varchar(255) primary key not null,
+	phoneNumber varchar(50));

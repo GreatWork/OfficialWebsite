@@ -4,23 +4,28 @@
 	import="java.sql.*,javax.sql.*,javax.naming.*,com.ow.*"%>
 
 <%
-	String pageTitle = "产品与服务";
+	String pageTitle="产品与服务";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="ctl00_Head1">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><%=pageTitle%></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><%= pageTitle %></title>
 <link href="css/common.css" type="text/css" rel="stylesheet" />
 <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
 <script type="text/javascript" language="javascript"
 	src="js/seanObject.js"></script>
 <script src="js/common.js" type="text/javascript"></script>
+</head>
+
+<%@ include file="header.jsp" %>
 
 <script type="text/javascript">
 
 $(document).ready(function() {
     var k = $G("k");
+    
+    //alert(k);
     if (k != 2 && k != 3 && k != 4 && k != 5) {
         k = 1;
     }
@@ -91,17 +96,6 @@ function ClickAccountManagement() {
 
 </script>
 
-<!--[if lte IE 6]>  
-<script type="text/javascript" src="Scripts/DD_belatedPNG_0.0.8a-min.js"></script>
-<script type="text/javascript">  
-       DD_belatedPNG.fix('.a_left');   
-       DD_belatedPNG.fix('.a_right'); 
-</script>  
-<![endif]-->
-</head>
-
-<%@ include file="header.jsp"%>
-
 <%
 	//Context ctx = new InitialContext();
 
@@ -110,7 +104,7 @@ function ClickAccountManagement() {
 	//DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/ow");
 
 	//conn = ds.getConnection();
-
+	
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	String url = "jdbc:mysql://localhost:8888/owdb";
 	Connection conn = DriverManager.getConnection(url, "cht", "cht");
@@ -160,19 +154,19 @@ function ClickAccountManagement() {
 			<%
 				}
 			%>
-
-			<dt>
-				<a href="javascript:void(0);"
-					onclick="ClickProductLM(this,&#39;3&#39;);">认购流程</a>
-			</dt>
-			<dt>
-				<a href="javascript:void(0);"
-					onclick="ClickProductLM(this,&#39;4&#39;);">常见问题</a>
-			</dt>
-			<dt>
-				<a href="javascript:void(0);"
-					onclick="ClickProductLM(this,&#39;5&#39;);">产品咨询</a>
-			</dt>
+		
+		<dt>
+			<a href="javascript:void(0);"
+				onclick="ClickProductLM(this,&#39;3&#39;);">认购流程</a>
+		</dt>
+		<dt>
+			<a href="javascript:void(0);"
+				onclick="ClickProductLM(this,&#39;4&#39;);">常见问题</a>
+		</dt>
+		<dt>
+			<a href="javascript:void(0);"
+				onclick="ClickProductLM(this,&#39;5&#39;);">产品咨询</a>
+		</dt>
 	</dl>
 	<div id="page01s01" class="rightcontent" style="">
 		<div class="ProductInfoShow">
@@ -232,7 +226,7 @@ function ClickAccountManagement() {
 		%>
 		<div class="AccountManagementShow"
 			style="display: none; padding-top: 20px;">
-			安洪投资目前担任多只专户信托计划的投资顾问，为客户提供专属证券投资顾问服务。<br> 咨询电话：86 21 2021 6640
+			重阳投资目前担任多只专户信托计划的投资顾问，为客户提供专属证券投资顾问服务。<br> 咨询电话：86 21 2021 6640
 		</div>
 
 		<!--重阳1期投资经理简介 -->
@@ -278,8 +272,8 @@ function ClickAccountManagement() {
 						if (rs.next()) {
 
 							mgrInfo = rs.getString(2);
-						} else {
-
+						}else{
+							
 							continue;
 						}
 			%>
@@ -308,13 +302,6 @@ function ClickAccountManagement() {
 
 	</div>
 
-	<%
-		rs.close();
-
-		stmt.close();
-
-		conn.close();
-	%>
 	<div id="page03s01" class="rightcontent" style="display: none;">
 		<div>
 			<b>认购流程</b><br> <b>1.委托人签署信托合同：</b>委托人在产品规定的有效时间范围内，跟信托公司、投资顾问或代销机构联系，获取信托合同进行签署，并提交相关证件；<br>
@@ -572,127 +559,81 @@ function ClickAccountManagement() {
 					<td align="center">产品经理</td>
 					<td align="center">联系电话</td>
 				</tr>
+				
+			<%
+				
+			    String proManager="";
+			    String proMgrNumber="";
+				rs=stmt.executeQuery("select mgrName,phoneNumber from ProductManager");
+				while(rs.next()){
+					
+					proManager=rs.getString(1);
+					proMgrNumber=rs.getString(2);					
+					
+					stmt = conn.prepareStatement("select count(1) from ProductInfo where productManager = ? ");
+					stmt.setString(1, proManager);
+					
+					ResultSet rs2 = stmt.executeQuery();
+					
+					int proCount=0;
+					
+					if(rs2.next()){
+						
+						proCount=rs2.getInt(1);
+					}
+					
+					stmt = conn.prepareStatement("select proName from ProductInfo where productManager = ? ");
+					stmt.setString(1, proManager);
+					
+					rs2=stmt.executeQuery();
+					
+					int flag=1;
+					
+					while(rs2.next()){
+						
+						
+						String curProName=rs2.getString(1);
+						
+						if(flag==1){//第一行
+							
+							
+						
+				
+			%>
 				<tr bgcolor="#FFFFFF">
-					<td align="center">重阳1期</td>
-					<td align="center" rowspan="2">薛晓明</td>
-					<td align="center" rowspan="2">021-20216595</td>
+					<td align="center"><%= curProName %></td>
+					<td align="center" rowspan="<%= proCount %>"><%= proManager %></td>
+					<td align="center" rowspan="<%= proCount %>"><%= proMgrNumber %></td>
 				</tr>
+				
+				<%
+						}else{
+				%>
 				<tr bgcolor="#FFFFFF">
-					<td align="center">重阳2期</td>
+					<td align="center"><%= curProName %></td>
 				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">至尊5号（重阳5期）</td>
-					<td align="center" rowspan="2">沈奕人</td>
-					<td align="center" rowspan="2">021-20216640</td>
-				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">投资精英之重阳</td>
-				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">重阳6期</td>
-					<td align="center" rowspan="4">袁子华</td>
-					<td align="center" rowspan="4">021-20216632</td>
-				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">重阳7期</td>
-				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">重阳8期</td>
-				</tr>
-
-				<tr bgcolor="#FFFFFF">
-					<td align="center">重阳9期</td>
-				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">重阳10期</td>
-					<td align="center" rowspan="5">王小军</td>
-					<td align="center" rowspan="5">0755-33043155</td>
-				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">重阳3期</td>
-				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">君享重阳一号</td>
-				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">汇金重阳</td>
-				</tr>
-				<tr bgcolor="#FFFFFF">
-					<td align="center">重阳对冲1号</td>
-				</tr>
+				
+			<%
+						}
+						
+						flag++;
+					}
+					
+				}
+			%>
+				
 			</tbody>
 		</table>
 	</div>
+	
+	<%
+		rs.close();
+
+		stmt.close();
+
+		conn.close();
+	%>
+	
 </div>
 
 <jsp:include page="footer.jsp" />
-
-<script type="text/javascript">
-//<![CDATA[
-var Page_Validators =  new Array(document.getElementById("ctl00_cpContent_RequiredFieldValidator1"), document.getElementById("ctl00_cpContent_RequiredFieldValidator4"), document.getElementById("ctl00_cpContent_RequiredFieldValidator2"), document.getElementById("ctl00_cpContent_RequiredFieldValidator3"), document.getElementById("ctl00_cpContent_RequiredFieldValidator5"), document.getElementById("ctl00_cpContent_RegularExpressionValidator1"), document.getElementById("ctl00_cpContent_RequiredFieldValidator6"));
-//]]>
-</script>
-
-<script type="text/javascript">
-//<![CDATA[
-var ctl00_cpContent_RequiredFieldValidator1 = document.all ? document.all["ctl00_cpContent_RequiredFieldValidator1"] : document.getElementById("ctl00_cpContent_RequiredFieldValidator1");
-ctl00_cpContent_RequiredFieldValidator1.controltovalidate = "ctl00_cpContent_txtName";
-ctl00_cpContent_RequiredFieldValidator1.errormessage = "*";
-ctl00_cpContent_RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-ctl00_cpContent_RequiredFieldValidator1.initialvalue = "";
-var ctl00_cpContent_RequiredFieldValidator4 = document.all ? document.all["ctl00_cpContent_RequiredFieldValidator4"] : document.getElementById("ctl00_cpContent_RequiredFieldValidator4");
-ctl00_cpContent_RequiredFieldValidator4.controltovalidate = "ctl00_cpContent_txtMoney";
-ctl00_cpContent_RequiredFieldValidator4.errormessage = "*";
-ctl00_cpContent_RequiredFieldValidator4.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-ctl00_cpContent_RequiredFieldValidator4.initialvalue = "";
-var ctl00_cpContent_RequiredFieldValidator2 = document.all ? document.all["ctl00_cpContent_RequiredFieldValidator2"] : document.getElementById("ctl00_cpContent_RequiredFieldValidator2");
-ctl00_cpContent_RequiredFieldValidator2.controltovalidate = "ctl00_cpContent_txtTel";
-ctl00_cpContent_RequiredFieldValidator2.errormessage = "*";
-ctl00_cpContent_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-ctl00_cpContent_RequiredFieldValidator2.initialvalue = "";
-var ctl00_cpContent_RequiredFieldValidator3 = document.all ? document.all["ctl00_cpContent_RequiredFieldValidator3"] : document.getElementById("ctl00_cpContent_RequiredFieldValidator3");
-ctl00_cpContent_RequiredFieldValidator3.controltovalidate = "ctl00_cpContent_txtFax";
-ctl00_cpContent_RequiredFieldValidator3.errormessage = "*";
-ctl00_cpContent_RequiredFieldValidator3.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-ctl00_cpContent_RequiredFieldValidator3.initialvalue = "";
-var ctl00_cpContent_RequiredFieldValidator5 = document.all ? document.all["ctl00_cpContent_RequiredFieldValidator5"] : document.getElementById("ctl00_cpContent_RequiredFieldValidator5");
-ctl00_cpContent_RequiredFieldValidator5.controltovalidate = "ctl00_cpContent_txtEmail";
-ctl00_cpContent_RequiredFieldValidator5.errormessage = "*";
-ctl00_cpContent_RequiredFieldValidator5.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-ctl00_cpContent_RequiredFieldValidator5.initialvalue = "";
-var ctl00_cpContent_RegularExpressionValidator1 = document.all ? document.all["ctl00_cpContent_RegularExpressionValidator1"] : document.getElementById("ctl00_cpContent_RegularExpressionValidator1");
-ctl00_cpContent_RegularExpressionValidator1.controltovalidate = "ctl00_cpContent_txtEmail";
-ctl00_cpContent_RegularExpressionValidator1.errormessage = "ERROR!";
-ctl00_cpContent_RegularExpressionValidator1.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
-ctl00_cpContent_RegularExpressionValidator1.validationexpression = "\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-var ctl00_cpContent_RequiredFieldValidator6 = document.all ? document.all["ctl00_cpContent_RequiredFieldValidator6"] : document.getElementById("ctl00_cpContent_RequiredFieldValidator6");
-ctl00_cpContent_RequiredFieldValidator6.controltovalidate = "ctl00_cpContent_txtAddress";
-ctl00_cpContent_RequiredFieldValidator6.errormessage = "*";
-ctl00_cpContent_RequiredFieldValidator6.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-ctl00_cpContent_RequiredFieldValidator6.initialvalue = "";
-//]]>
-</script>
-
-
-<script type="text/javascript">
-//<![CDATA[
-
-var Page_ValidationActive = false;
-if (typeof(ValidatorOnLoad) == "function") {
-    ValidatorOnLoad();
-}
-
-function ValidatorOnSubmit() {
-    if (Page_ValidationActive) {
-        return ValidatorCommonOnSubmit();
-    }
-    else {
-        return true;
-    }
-}
-        //]]>
-</script>
-</form>
-
-</body>
-</html>

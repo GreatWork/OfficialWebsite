@@ -26,10 +26,10 @@
 			</table>
 			<ul class="menu">
 				<li><a href="index.jsp">首页</a></li>
-				<li><a href="about.jsp">关于重阳</a>
+				<li><a href="about.jsp">关于安洪</a>
 					<p class="submenu">
 						<a href="about.jsp">公司简介</a>
-						<a href="about.jsp?k=2">重阳理念</a>
+						<a href="about.jsp?k=2">安洪理念</a>
 						<a href="about.jsp?k=3">投资经理简介</a>
 						<a href="about.jsp?k=4">投资研究团队</a>
 						<a href="about.jsp?k=5">公司荣誉</a>
@@ -38,15 +38,15 @@
 						<i class="rightborder"></i>
 					</p>
 				</li>
-				<li id="m_profile"><a href="dynamic.jsp">重阳动态</a>
+				<li id="m_profile"><a href="dynamic.jsp">安洪动态</a>
 					<p class="submenu">
-						<a href="dynamic.jsp">重阳资讯</a>
-						<a href="dynamic.jsp?k=2">重阳视点</a>
+						<a href="dynamic.jsp">安洪资讯</a>
+						<a href="dynamic.jsp?k=2">安洪视点</a>
 						<i class="sj"></i>
 						<i class="rightborder"></i>
 					</p>
 				</li>
-				<li id="m_info"><a href="recommend.jsp">重阳推荐</a></li>
+				<li id="m_info"><a href="recommend.jsp">安洪推荐</a></li>
 				<li id="m_pro"><a href="products.jsp">产品与服务</a>
 					<p class="submenu">
 						<a href="products.jsp">信托产品</a>

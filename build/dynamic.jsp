@@ -3,9 +3,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="org.apache.log4j.Logger"%>
+<%@ page import="com.ow.DBDao"%>
 
 <%
-	String pageTitle = "重阳动态";
+	String pageTitle = "安洪动态";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,9 +56,9 @@
 <div class="wapper clearfix overhide">
 	<div class="subleft">
 		<a href="javascript:void(0);" class="on" onclick="ClickLeftMenu('1');"
-			id="menu01">重阳资讯</a> 
+			id="menu01">安洪资讯</a> 
 		<a href="javascript:void(0);" onclick="ClickLeftMenu('2');" 
-			id="menu02" class="">重阳视点</a>
+			id="menu02" class="">安洪视点</a>
 	</div>
 	<div id="page01" class="rightcontent wordbox" style="display: block;">
 		<div id="ctl00_cpContent_UpdatePanel1">
@@ -476,7 +477,11 @@
 </div>
 
 
-<%!private static final Logger logger = Logger.getLogger("com.chongyang.dynamic");%>
+<%!
+
+private static final Logger logger = Logger.getLogger("com.ow.dynamic");
+
+%>
 
 
 <script type="text/javascript">
