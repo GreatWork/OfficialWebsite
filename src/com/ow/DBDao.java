@@ -17,6 +17,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 import com.ow.dto.NewsInfoDto;
+import com.ow.dto.RecommendInfoDto;
 import com.ow.dto.ViewPointDto;
 
 public class DBDao{
@@ -73,8 +74,7 @@ public class DBDao{
 	/**-----------------------------------------
 	 * NewsInfo操作
 	 * -----------------------------------------
-	 */
-	
+	 */	
 	public int getNewsInfoTotalNum(){
 		logger.debug("DBDao:: getNewsInfoTotalNum -----------begin ");
 		int totalNum=0;
@@ -267,5 +267,103 @@ public class DBDao{
 		} 
 		logger.debug("DBDao:: getViewPointById -----------end ");
 		return viewPoint;
+	}
+	
+	/**-----------------------------------------
+	 * RecommendInfo操作
+	 * -----------------------------------------
+	 */
+	public int getRecommendInfoTotalNum(){
+		logger.debug("DBDao:: getRecommendInfoTotalNum -----------begin ");
+		int totalNum=0;
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select count(1) from RecommendInfo");
+			if (rs.next()){
+				totalNum = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			logger.error(e, e);
+		} 
+		logger.debug("DBDao:: getRecommendInfoTotalNum totalNum="+totalNum+"-----------end ");
+		return totalNum;
+	}
+	
+	/*根据页面控制数返回记录 
+	 */
+	public List<RecommendInfoDto> getRecommendInfoByPage(int pageIndex,int pageSize){
+		logger.debug("DBDao:: getRecommendInfoByPage -----------begin ");
+		logger.debug("pageIndex="+pageIndex+",pageSize="+pageSize);
+		List<RecommendInfoDto> recommendInfos=new ArrayList<RecommendInfoDto>();
+		try {
+			int firstIndex=(pageIndex-1)*pageSize;
+			PreparedStatement pstmt = conn.prepareStatement("select recId,recTitle,recTime from RecommendInfo order by recTime desc limit ?,?");				
+			pstmt.setInt(1, firstIndex);
+			pstmt.setInt(2, pageSize);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()){
+				RecommendInfoDto recommendInfo=new RecommendInfoDto();
+				recommendInfo.setId(rs.getInt(1));
+				recommendInfo.setTitle(rs.getString(2));
+				recommendInfo.setCreateTime(rs.getDate(3));
+				
+				recommendInfos.add(recommendInfo);
+			}			
+			rs.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			logger.error(e, e);
+		} 
+		logger.debug("DBDao:: getRecommendInfoByPage -----------end ");
+		return recommendInfos;
+	}
+	
+	/*返回最新的五条记录 
+	 */
+	public List<RecommendInfoDto> getTheNewestFiveRecommendInfo(){
+		logger.debug("DBDao:: getTheNewestFiveRecommendInfo -----------begin ");
+		List<RecommendInfoDto> RecommendInfos=new ArrayList<RecommendInfoDto>();
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select recId,recTitle,recTime from RecommendInfo order by recTime desc limit 5");
+			if (rs.next()){
+				RecommendInfoDto RecommendInfo=new RecommendInfoDto();
+				RecommendInfo.setId(rs.getInt(1));
+				RecommendInfo.setTitle(rs.getString(2));
+				RecommendInfo.setCreateTime(rs.getDate(3));
+				
+				RecommendInfos.add(RecommendInfo);
+			}			
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			logger.error(e, e);
+		} 
+		logger.debug("DBDao:: getTheNewestFiveRecommendInfo -----------end ");
+		return RecommendInfos;
+	}
+	
+	/*返回记录根据id 
+	 */
+	public RecommendInfoDto getRecommendInfoById(int id){
+		logger.debug("DBDao:: getRecommendInfoById -----------begin ");
+		logger.debug("id = "+id);
+		RecommendInfoDto RecommendInfo=new RecommendInfoDto();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("select recTitle,recInfo,recTime from RecommendInfo where id = ?");				
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()){
+				RecommendInfo.setTitle(rs.getString(1));
+				RecommendInfo.setContent(rs.getString(2));
+				RecommendInfo.setCreateTime(rs.getDate(3));				
+			}			
+			rs.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			logger.error(e, e);
+		} 
+		logger.debug("DBDao:: getTheNewestFiveRecommendInfo -----------end ");
+		return RecommendInfo;
 	}
 }

@@ -1,12 +1,19 @@
 package com.ow.dto;
 
+import java.io.Serializable;
+
 /**
  * 控制页面显示数据
  * @author xuj
  *
  */
-public class PageDto {
+public class PageDto implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1871483503735783830L;
+
 	/**
 	 * 每个页面显示的最大记录条数
 	 */

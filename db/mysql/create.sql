@@ -23,6 +23,7 @@ create table if not exists ViewPoint(
 	);
 
 --推荐概要表
+drop table if exists RecommendInfo;
 create table if not exists RecommendInfo(
 	recId INT primary key not null auto_increment,
 	recAuthor VARCHAR(255),
