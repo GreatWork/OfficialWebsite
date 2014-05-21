@@ -7,12 +7,12 @@ import java.io.Serializable;
  * @author xuj
  *
  */
-public class PageDto implements Serializable{
+public class TableDto implements Serializable{
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1871483503735783830L;
+	private static final long serialVersionUID = -3347662357052042389L;
 
 	/**
 	 * 每个页面显示的最大记录条数

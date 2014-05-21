@@ -58,7 +58,7 @@
 <div class="line"></div>
 <div class="wapper clearfix">
 	<div class="news_box fl mr50">
-		<h2 class="title_news">重阳动态</h2>
+		<h2 class="title_news">安洪动态</h2>
 		<a href="dynamic.jsp" target="_blank" class="a_more">MORE</a>
 		<ul class="news_ul">
 			<%for(NewsInfoDto newsInfo:newsInfos){%>		
@@ -70,7 +70,7 @@
 		</ul>
 	</div>
 	<div class="news_box fl">
-		<h2 class="title_recommend">重阳推荐</h2>
+		<h2 class="title_recommend">安洪推荐</h2>
 		<a href="recommend.jsp" target="_blank" class="a_more">MORE</a>
 		<ul class="news_ul">
 			<%for(RecommendInfoDto recommendInfo:recommendInfos){%>		
