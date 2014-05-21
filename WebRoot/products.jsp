@@ -1,3 +1,6 @@
+<%@page import="com.ow.dto.ProductManagerDto"%>
+<%@page import="com.ow.dto.InvestManagerDto"%>
+<%@page import="com.ow.dto.ProductInfoDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
@@ -97,43 +100,12 @@ function ClickAccountManagement() {
 </script>
 
 <%
-	//Context ctx = new InitialContext();
-
-	//Connection conn = null;
-
-	//DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/ow");
-
-	//conn = ds.getConnection();
+	DBDao dbDao = new DBDao();
+	dbDao.init();
 	
-	Class.forName("com.mysql.jdbc.Driver").newInstance();
-	String url = "jdbc:mysql://localhost:8888/owdb";
-	Connection conn = DriverManager.getConnection(url, "cht", "cht");
+	List<ProductInfoDto> productInfoDtos=dbDao.getProductInfos();
 
-	PreparedStatement stmt = conn
-			.prepareStatement("select proName,investManager,proInfo from ProductInfo");
-
-	ResultSet rs = stmt.executeQuery();
-
-	ArrayList<String> proNameList = new ArrayList<String>();
-	ArrayList<String> investManagerList = new ArrayList<String>();
-	ArrayList<String> proInfoList = new ArrayList<String>();
-
-	while (rs.next()) {
-
-		String proName = "";
-		String investManager = "";
-		String proInfo = "";
-
-		proName = rs.getString(1) + "";
-		investManager = rs.getString(2);
-		proInfo = rs.getString(3);
-
-		proNameList.add(proName);
-		investManagerList.add(investManager);
-		proInfoList.add(proInfo);
-	}
 %>
-
 
 <div class="wapper clearfix">
 	<img src="img/product/banner_product.jpg">
@@ -147,25 +119,25 @@ function ClickAccountManagement() {
 		<dd style="">
 
 			<%
-				for (int i = 0; i < proNameList.size(); i++) {
+				for (int i = 0; i < productInfoDtos.size(); i++) {
 			%>
 			<a href="javascript:void(0);"
-				onclick="ClickProduct(this,&#39;<%=i + 1%>&#39;);" class="on"><%=proNameList.get(i)%></a>
+				onclick="ClickProduct(this,&#39;<%=i + 1%>&#39;);" class="on"><%=productInfoDtos.get(i).getName()%></a>
 			<%
 				}
 			%>
 		
 		<dt>
 			<a href="javascript:void(0);"
-				onclick="ClickProductLM(this,&#39;3&#39;);">认购流程</a>
+				onclick="ClickProductLM(this,&#39;2&#39;);">认购流程</a>
 		</dt>
 		<dt>
 			<a href="javascript:void(0);"
-				onclick="ClickProductLM(this,&#39;4&#39;);">常见问题</a>
+				onclick="ClickProductLM(this,&#39;3&#39;);">常见问题</a>
 		</dt>
 		<dt>
 			<a href="javascript:void(0);"
-				onclick="ClickProductLM(this,&#39;5&#39;);">产品咨询</a>
+				onclick="ClickProductLM(this,&#39;4&#39;);">产品咨询</a>
 		</dt>
 	</dl>
 	<div id="page01s01" class="rightcontent" style="">
@@ -181,7 +153,7 @@ function ClickAccountManagement() {
 		</div>
 
 		<%
-			for (int i = 0; i < proInfoList.size(); i++) {
+			for (int i = 0; i < productInfoDtos.size(); i++) {
 		%>
 		<div class="ProductInfo<%=i + 1%>" style="display: none;">
 			<br>
@@ -190,8 +162,8 @@ function ClickAccountManagement() {
 				<tbody>
 
 					<%
-						String proInfo = proInfoList.get(i);
-							String[] subInfos = PageUtil.getParagraphs(proInfo);
+						String proInfo = productInfoDtos.get(i).getInfo();
+						String[] subInfos = PageUtil.getParagraphs(proInfo);
 
 							for (int j = 0; j < subInfos.length; j++) {
 
@@ -232,9 +204,9 @@ function ClickAccountManagement() {
 		<!--重阳1期投资经理简介 -->
 
 		<%
-			for (int i = 0; i < investManagerList.size(); i++) {
+			for (int i = 0; i < productInfoDtos.size(); i++) {
 
-				String manager = investManagerList.get(i);
+				String manager = productInfoDtos.get(i).getInvestManager();
 
 				int idx = manager.indexOf(",");
 
@@ -260,35 +232,27 @@ function ClickAccountManagement() {
 			<%
 				for (int j = 0; j < managerList.size(); j++) {
 
-						String mgr = managerList.get(j);
+						String mgrName = managerList.get(j);
 
 						String mgrInfo = "";
 
-						stmt = conn
-								.prepareStatement("select mgrName,mgrInfo from InvestManager where mgrName = ? ");
-						stmt.setString(1, mgr);
-						rs = stmt.executeQuery();
-
-						if (rs.next()) {
-
-							mgrInfo = rs.getString(2);
-						}else{
-							
-							continue;
-						}
+						InvestManagerDto investManagerDto=dbDao.getInvestManagerDto(mgrName);
+						
+						if(investManagerDto==null) continue;
+						
 			%>
 
 			<%
 				if (j == 0) {
 			%>
-			<h3><%=mgr%></h3>
-			<p><%=mgrInfo%></p>
+			<h3><%=investManagerDto.getName()%></h3>
+			<p><%=investManagerDto.getInfo()%></p>
 
 			<%
 				} else {
 			%>
-			<br> <b><%=mgr%></b><br>
-			<p><%=mgrInfo%></p>
+			<br> <b><%=investManagerDto.getName()%></b><br>
+			<p><%=investManagerDto.getInfo()%></p>
 
 			<%
 				}
@@ -302,7 +266,7 @@ function ClickAccountManagement() {
 
 	</div>
 
-	<div id="page03s01" class="rightcontent" style="display: none;">
+	<div id="page02s01" class="rightcontent" style="display: none;">
 		<div>
 			<b>认购流程</b><br> <b>1.委托人签署信托合同：</b>委托人在产品规定的有效时间范围内，跟信托公司、投资顾问或代销机构联系，获取信托合同进行签署，并提交相关证件；<br>
 			<b>2.委托人汇款：</b>委托人在产品规定的有效时间范围内，将认购资金及认购费用，通过银行汇款到该信托产品指定的托管银行帐户；<br>
@@ -322,7 +286,7 @@ function ClickAccountManagement() {
 		<img src="img/product/nav03s01pic.gif" width="607" height="595"><br>
 		<br>
 	</div>
-	<div id="page04s01" class="rightcontent" style="display: none;">
+	<div id="page03s01" class="rightcontent" style="display: none;">
 		<table width="625" border="0" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr>
@@ -549,7 +513,7 @@ function ClickAccountManagement() {
 			</tbody>
 		</table>
 	</div>
-	<div id="page05s01" class="rightcontent" style="display: none;">
+	<div id="page04s01" class="rightcontent" style="display: none;">
 		<table width="625" border="0" cellspacing="1" cellpadding="0"
 			bgcolor="#ECEEED">
 			<tbody>
@@ -562,48 +526,21 @@ function ClickAccountManagement() {
 				
 			<%
 				
-			    String proManager="";
-			    String proMgrNumber="";
-				rs=stmt.executeQuery("select mgrName,phoneNumber from ProductManager");
-				while(rs.next()){
+				List<ProductManagerDto> proMgrs=dbDao.getProductManagerDtos();
+			
+				for(ProductManagerDto proMgr:proMgrs){
 					
-					proManager=rs.getString(1);
-					proMgrNumber=rs.getString(2);					
-					
-					stmt = conn.prepareStatement("select count(1) from ProductInfo where productManager = ? ");
-					stmt.setString(1, proManager);
-					
-					ResultSet rs2 = stmt.executeQuery();
-					
-					int proCount=0;
-					
-					if(rs2.next()){
-						
-						proCount=rs2.getInt(1);
-					}
-					
-					stmt = conn.prepareStatement("select proName from ProductInfo where productManager = ? ");
-					stmt.setString(1, proManager);
-					
-					rs2=stmt.executeQuery();
-					
+					List<String> proNames=dbDao.getProductNames(proMgr.getName());
 					int flag=1;
-					
-					while(rs2.next()){
-						
-						
-						String curProName=rs2.getString(1);
-						
-						if(flag==1){//第一行
-							
-							
-						
+					for(String curProName : proNames){	
+				
+						if(flag==1){
 				
 			%>
 				<tr bgcolor="#FFFFFF">
 					<td align="center"><%= curProName %></td>
-					<td align="center" rowspan="<%= proCount %>"><%= proManager %></td>
-					<td align="center" rowspan="<%= proCount %>"><%= proMgrNumber %></td>
+					<td align="center" rowspan="<%= proNames.size() %>"><%= proMgr.getName() %></td>
+					<td align="center" rowspan="<%= proNames.size() %>"><%= proMgr.getPhoneNumber() %></td>
 				</tr>
 				
 				<%
@@ -627,11 +564,7 @@ function ClickAccountManagement() {
 	</div>
 	
 	<%
-		rs.close();
-
-		stmt.close();
-
-		conn.close();
+		dbDao.close();
 	%>
 	
 </div>

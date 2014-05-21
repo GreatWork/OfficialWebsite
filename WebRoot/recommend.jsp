@@ -1,3 +1,5 @@
+<%@page import="com.ow.dto.RecommendInfoDto"%>
+<%@page import="java.util.List,java.util.ArrayList"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
@@ -20,7 +22,7 @@
 
 <jsp:include page="header.jsp" />
 
-<%!RecommendPage pageInfo = new RecommendPage();%>
+<%! RecommendPage pageInfo = new RecommendPage(); %>
 
 <%
 	String curPage = request.getParameter("page");
@@ -31,13 +33,26 @@
 
 			if (pageInfo.getCurPageNum() > 1) {
 
+				if(pageInfo.getStartPageNum()==pageInfo.getCurPageNum()){
+					
+					pageInfo.setStartPageNum(pageInfo.getStartPageNum()-1);
+					pageInfo.setEndPageNum(pageInfo.getEndPageNum()-1);
+				}
+				
 				pageInfo.setCurPageNum(pageInfo.getCurPageNum() - 1);
+				
 			}
 
 		} else if (0 == num) {//下一页
 
 			if (pageInfo.getCurPageNum() < pageInfo.getPageCount()) {
 
+				if(pageInfo.getEndPageNum()==pageInfo.getCurPageNum()){
+					
+					pageInfo.setEndPageNum(pageInfo.getEndPageNum()+1);
+					pageInfo.setStartPageNum(pageInfo.getStartPageNum()+1);
+				}
+				
 				pageInfo.setCurPageNum(pageInfo.getCurPageNum() + 1);
 			}
 
@@ -45,35 +60,20 @@
 
 			pageInfo.setCurPageNum(num);
 		}
+		
 	}
 %>
 
-<script type="text/javascript">
-	var curPageNum = 1;
-	var maxShowRecCount = 5;
-	var maxShowPageNum = 5;
-	var totalRecCount = 0;
+<%
+	DBDao dbDao = new DBDao();
+	dbDao.init();
+	int recId=(pageInfo.getCurPageNum() - 1)*pageInfo.MaxShowPageNum + 1;
+	int maxShowPageNum=pageInfo.MaxShowPageNum;
+	List<RecommendInfoDto> recommendInfoDtos=dbDao.getRecommendInfoDtos(recId, maxShowPageNum);
+	pageInfo.setTotalRecordCount(dbDao.getTotalRecommendCount());	
+	dbDao.close();
 
-	function getPageCount() {
-
-		if (totalRecCount % maxShowRecCount == 0) {
-
-			return totalRecCount % maxShowRecCount;
-		}
-
-		return totalRecCount % maxShowRecCount + 1;
-	}
-
-	function __doPostBack(pageNum) {
-
-		alert(pageNum);
-
-		locaion.reload();
-	}
-</script>
-
-
-
+%>
 <div class="wapper clearfix">
 	<img src="img/recommend/banner_news.jpg">
 </div>
@@ -87,44 +87,17 @@
 			<table width="625" border="0" cellspacing="0" cellpadding="0">
 
 				<%
-					//Context ctx = new InitialContext();
-
-					//Connection conn = null;
-
-					//DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/ow");
-
-					//conn = ds.getConnection();
-
-					Class.forName("com.mysql.jdbc.Driver").newInstance();
-					String url = "jdbc:mysql://localhost:8888/owdb";
-					Connection conn = DriverManager.getConnection(url, "cht", "cht");
-
-					PreparedStatement stmt = conn
-							.prepareStatement("select recId,recTitle,recTime from recommendinfo where recId >= ? limit ?");
-
-					stmt.setInt(1, (pageInfo.getCurPageNum() - 1)
-							* pageInfo.MaxShowPageNum + 1);
-					stmt.setInt(2, pageInfo.MaxShowPageNum);
-
-					ResultSet rs = stmt.executeQuery();
-
-					String title = "";
-					String dateString = "";
-					String id = "";
-
-					while (rs.next()) {
-
-						id = rs.getInt(1) + "";
-						title = rs.getString(2);
-						dateString = rs.getDate(3).toString();
+						
+				   for(RecommendInfoDto recommendInfoDto:recommendInfoDtos){
+					   				   
 				%>
 
 				<tr>
 					<td>
 						<tr>
 							<td width="505"><a
-								href="recommenddetail.jsp?id=<%=id%>&t=<%=java.net.URLEncoder.encode(title, "UTF-8")%>"><%=title%></a></td>
-							<td width="120" align="right" style="font-family: Tahoma;"><%=dateString%></td>
+								href="recommenddetail.jsp?id=<%=recommendInfoDto.getId()%>&t=<%=java.net.URLEncoder.encode(recommendInfoDto.getTitle(), "UTF-8")%>"><%=recommendInfoDto.getTitle()%></a></td>
+							<td width="120" align="right" style="font-family: Tahoma;"><%=recommendInfoDto.getDate()%></td>
 						</tr>
 						<tr>
 							<td colspan="2"><img src="img/recommend/lineB.gif"
@@ -135,23 +108,10 @@
 
 				<%
 					}
-
-					//获取总记录数
-					rs = stmt.executeQuery("select count(1) from recommendinfo");
-
-					if (rs.next())
-						pageInfo.setTotalRecordCount(rs.getInt(1));
-
-					rs.close();
-
-					stmt.close();
-
-					conn.close();
 				%>
 				</td>
 				<tr>
 			</table>
-
 
 			<div id="ctl00_cpContent_AspNetPager1" showpageindexbox="Never"
 				pagingbuttonclass="PageFontA">
@@ -165,20 +125,41 @@
 								style="margin-right: 5px;"> <a
 									href="recommend.jsp?page=-1" style="margin-right: 5px;">&lt;上一页</a>
 									<%
-										int iFlag = 0;
-										while (iFlag < pageInfo.MaxShowPageNum) {
-
-											if (pageInfo.getCurPageNum() + iFlag <= pageInfo.getPageCount()) {
+									
+										if(pageInfo.getEndPageNum()==-1){//第一次加载
+											
+											if(pageInfo.getPageCount()<pageInfo.MaxShowPageNum){
+												
+												pageInfo.setEndPageNum(pageInfo.getPageCount());
+												
+											}else{
+												
+												pageInfo.setEndPageNum(pageInfo.MaxShowPageNum);
+											}
+										}
+									
+										int iFlag = pageInfo.getStartPageNum();
+										while (iFlag <= pageInfo.getEndPageNum()) {
+											
+											if(iFlag==pageInfo.getCurPageNum()){
+											
 									%> <a
-									href="recommend.jsp?page=<%=pageInfo.getCurPageNum() + iFlag%>"
-									style="margin-right: 5px;"><%=pageInfo.getCurPageNum() + iFlag%></a>
-
+									href="recommend.jsp?page=<%=iFlag%>"
+									style="margin-right: 5px;text-decoration:underline;"><%=iFlag%></a>
+									<%
+											}else{
+																		
+									%>
+									<a
+									href="recommend.jsp?page=<%=iFlag%>"
+									style="margin-right: 5px;"><%=iFlag%></a>
 
 									<%
-										}
+											}
 											iFlag++;
 										}
-									%> <span style="margin-right: 5px;"><a
+									%> 
+									<span style="margin-right: 5px;"><a
 										href="recommend.jsp?page=0" style="margin-right: 5px;">下一页&gt;</a></td>
 						</tr>
 					</tbody>
@@ -190,13 +171,12 @@
 	</div>
 </div>
 
-
 <jsp:include page="footer.jsp" />
 
 <script type="text/javascript">
-//<![CDATA[
-Sys.Application.initialize();
-//]]>
+	//         
+	Sys.Application.initialize();
+	//
 </script>
 </form>
 

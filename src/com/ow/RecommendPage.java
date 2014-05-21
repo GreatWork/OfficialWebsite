@@ -10,15 +10,41 @@ public class RecommendPage {
 	 * 当前页面编号
 	 */
 	private int _CurPageNum=1;
+
+	private int _startPageNum=1;
+	
+	private int _endPageNum=-1;
+
 	/**
 	 * 每个页面显示的记录条数
 	 */
-	public static final int PageRecord=3;
+	public static final int PageRecord=10;
 	
 	/**
 	 * 页面下最多显示的索引数
 	 */
-	public static final int MaxShowPageNum=3;
+	public static final int MaxShowPageNum=10;
+	
+	
+	public int getStartPageNum(){
+		
+		return _startPageNum;
+	}
+	
+	public void setStartPageNum(int num){
+		
+		_startPageNum=num;
+	}
+	
+	public int getEndPageNum(){
+		
+		return _endPageNum;
+	}
+	
+	public void setEndPageNum(int num){
+		
+		_endPageNum=num;
+	}
 	
 	/**
 	 * 获取总页面数
