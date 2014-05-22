@@ -9,7 +9,7 @@ create table if not exists NewsInfo(
 	content TEXT,
 	creatTime TIMESTAMP,
 	modifyTime TIMESTAMP
-	);
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #视点表,公司发布的分析报告
 drop table if exists ViewPoint;
@@ -20,7 +20,7 @@ create table if not exists ViewPoint(
 	content TEXT,
 	creatTime TIMESTAMP,
 	modifyTime TIMESTAMP
-	);
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #推荐概要表
 drop table if exists RecommendInfo;
@@ -29,7 +29,8 @@ create table if not exists RecommendInfo(
 	recAuthor VARCHAR(255),
 	recTitle VARCHAR(255) not null,
 	recInfo MEDIUMTEXT,
-	recTime TIMESTAMP);
+	recTime TIMESTAMP
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #产品表
 drop table if exists ProductInfo;
@@ -37,17 +38,22 @@ create table if not exists ProductInfo(
 	proName varchar(255) primary key not null,
 	investManager varchar(255),
 	productManager varchar(255),
-	proInfo text);
+	proInfo text
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #投资经理表
+drop table if exists InvestManager;
 create table if not exists InvestManager(
 	mgrName varchar(255) primary key not null,
-	mgrInfo text);
+	mgrInfo text
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #产品经理表
+drop table if exists ProductManager;
 create table if not exists ProductManager(
 	mgrName varchar(255) primary key not null,
-	phoneNumber varchar(50));
+	phoneNumber varchar(50)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #招聘信息表
 drop table if exists RecruitInfo;
@@ -62,7 +68,7 @@ create table if not exists RecruitInfo(
 	isValid INT not null,
 	creatTime TIMESTAMP,
 	modifyTime TIMESTAMP
-	);
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 drop table if exists ConfigInfo;
 create table if not exists ConfigInfo(
@@ -71,4 +77,4 @@ create table if not exists ConfigInfo(
 	detail TEXT not null,
 	creatTime TIMESTAMP,
 	modifyTime TIMESTAMP
-	);	
+	)ENGINE=InnoDB DEFAULT CHARSET=utf8;	
