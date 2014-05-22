@@ -1,6 +1,7 @@
 package com.ow;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -66,15 +67,10 @@ public class DBDao {
 		logger.debug("DBDao:: init -----------begin ");
 
 		try {
-			Properties props = new Properties();
-			InputStream in = new BufferedInputStream(new FileInputStream(
-					"config.properties"));
-			props.load(in);
-
-			String dbDriver = props.getProperty("database.driverClassName");
-			String dbUrl = props.getProperty("database.url");
-			String dbUser = props.getProperty("database.username");
-			String dbPwd = props.getProperty("database.password");
+			String dbDriver = "com.mysql.jdbc.Driver";
+			String dbUrl = "jdbc:mysql://127.0.0.1:8888/owdb?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
+			String dbUser = "anhong";
+			String dbPwd = "anhongmgr";
 
 			Class.forName(dbDriver);
 			conn = java.sql.DriverManager.getConnection(dbUrl, dbUser, dbPwd);
@@ -459,7 +455,25 @@ public class DBDao {
 	 * ----------------------------------------- NewsInfo操作
 	 * -----------------------------------------
 	 */
-
+	public int getNewsInfoTotalNum() {
+		logger.debug("DBDao:: getNewsInfoTotalNum -----------begin ");
+		int totalNum = 0;
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select count(1) from NewsInfo");
+			if (rs.next()) {
+				totalNum = rs.getInt(1);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			logger.error(e, e);
+		}
+		logger.debug("DBDao:: getNewsInfoTotalNum totalNum=" + totalNum
+				+ "-----------end ");
+		return totalNum;
+	}
+	
 	/*
 	 * 根据页面控制数返回记录
 	 */
@@ -500,8 +514,7 @@ public class DBDao {
 		List<NewsInfoDto> newsInfos = new ArrayList<NewsInfoDto>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("select id,title,creatTime from NewsInfo order by creatTime desc limit 5");
+			ResultSet rs = stmt.executeQuery("select id,title,creatTime from NewsInfo order by creatTime desc limit 5");
 
 			while (rs.next()) {
 				NewsInfoDto newsInfo = new NewsInfoDto();
@@ -780,7 +793,7 @@ public class DBDao {
 	public String getConfigInfoByName(String name){
 		logger.debug("DBDao:: getConfigInfoByName -----------begin ");
 		logger.debug("name = "+name);
-		String detail=null;
+		String detail="";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement("select detail from ConfigInfo where name = ?");				
 			pstmt.setString(1, name);
