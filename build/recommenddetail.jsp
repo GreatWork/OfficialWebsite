@@ -1,4 +1,4 @@
-<%@page import="com.ow.dto.RecommendInfoDto"%>
+<%@page import="com.ow.dto.RecommendInfo2Dto"%>
 <%@page import="java.awt.image.TileObserver"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.net.URLEncoder"%>
@@ -30,7 +30,7 @@
 	dbDao.init();
 	int recId = Integer.parseInt(request.getParameter("id"));
 
-	RecommendInfoDto recommendInfoDto = dbDao
+	RecommendInfo2Dto recommendInfoDto = dbDao
 	.getRecommendInfoDto(recId);
 
 	dbDao.close();

@@ -21,7 +21,7 @@ import com.ow.dto.NewsInfoDto;
 import com.ow.dto.ProductInfoDto;
 import com.ow.dto.ProductManagerDto;
 
-import com.ow.dto.RecommendInfoDto;
+import com.ow.dto.RecommendInfo2Dto;
 import com.ow.dto.ViewPointDto;
 
 public class DBDao {
@@ -108,12 +108,12 @@ public class DBDao {
 	 * @param maxShowPageNum	当前页面最大显示个数
 	 * @return
 	 */
-	public List<RecommendInfoDto> getRecommendInfoDtos(int recId,
+	public List<RecommendInfo2Dto> getRecommendInfoDtos(int recId,
 			int maxShowPageNum) {
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		List<RecommendInfoDto> recommendInfoDtos = null;
+		List<RecommendInfo2Dto> recommendInfoDtos = null;
 		try {
 
 			stmt = conn
@@ -128,7 +128,7 @@ public class DBDao {
 			String dateString = "";
 			String id = "";
 
-			recommendInfoDtos = new ArrayList<RecommendInfoDto>();
+			recommendInfoDtos = new ArrayList<RecommendInfo2Dto>();
 			
 			while (rs.next()) {
 
@@ -136,7 +136,7 @@ public class DBDao {
 				title = rs.getString(2);
 				dateString = rs.getDate(3).toString();
 
-				RecommendInfoDto recommendInfoDto = new RecommendInfoDto();
+				RecommendInfo2Dto recommendInfoDto = new RecommendInfo2Dto();
 				recommendInfoDto.setId(id);
 				recommendInfoDto.setDate(dateString);
 				recommendInfoDto.setTitle(title);
@@ -159,11 +159,11 @@ public class DBDao {
 		return recommendInfoDtos;
 	}
 	
-	public RecommendInfoDto getRecommendInfoDto(int recId) {
+	public RecommendInfo2Dto getRecommendInfoDto(int recId) {
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		RecommendInfoDto recommendInfoDto = null;
+		RecommendInfo2Dto recommendInfoDto = null;
 		try {
 
 			stmt = conn
@@ -180,7 +180,7 @@ public class DBDao {
 
 			if(rs.next()) {
 
-				recommendInfoDto=new RecommendInfoDto();
+				recommendInfoDto=new RecommendInfo2Dto();
 				
 				author = rs.getString(1);
 				title = rs.getString(2);

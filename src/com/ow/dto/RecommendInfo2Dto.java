@@ -1,6 +1,6 @@
 package com.ow.dto;
 
-public class RecommendInfoDto {
+public class RecommendInfo2Dto {
 
 	private String _id;
 	private String _title;
