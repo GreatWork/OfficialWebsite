@@ -542,13 +542,14 @@ public class DBDao {
 		NewsInfoDto newsInfo = new NewsInfoDto();
 		try {
 			PreparedStatement pstmt = conn
-					.prepareStatement("select title,content,creatTime from NewsInfo where id = ?");
+					.prepareStatement("select author,title,content,creatTime from NewsInfo where id = ?");
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				newsInfo.setTitle(rs.getString(1));
-				newsInfo.setContent(rs.getString(2));
-				newsInfo.setCreateTime(rs.getDate(3));
+				newsInfo.setAuthor(rs.getString(1));
+				newsInfo.setTitle(rs.getString(2));
+				newsInfo.setContent(rs.getString(3));
+				newsInfo.setCreateTime(rs.getDate(4));
 			}
 			rs.close();
 			pstmt.close();
@@ -643,13 +644,14 @@ public class DBDao {
 		ViewPointDto viewPoint = new ViewPointDto();
 		try {
 			PreparedStatement pstmt = conn
-					.prepareStatement("select title,content,creatTime from ViewPoint where id = ?");
+					.prepareStatement("select author,title,content,creatTime from ViewPoint where id = ?");
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				viewPoint.setTitle(rs.getString(1));
-				viewPoint.setContent(rs.getString(2));
-				viewPoint.setCreateTime(rs.getDate(3));
+				viewPoint.setAuthor(rs.getString(1));
+				viewPoint.setTitle(rs.getString(2));
+				viewPoint.setContent(rs.getString(3));
+				viewPoint.setCreateTime(rs.getDate(4));
 			}
 			rs.close();
 			pstmt.close();
@@ -717,7 +719,7 @@ public class DBDao {
 		List<RecommendInfoDto> RecommendInfos=new ArrayList<RecommendInfoDto>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select id,title,creatTime from RecommendInfo order by creatTime desc limit 5");
+			ResultSet rs = stmt.executeQuery("select recId,recTitle,recTime from RecommendInfo order by recTime desc limit 5");
 			
 			while (rs.next()){
 				RecommendInfoDto RecommendInfo=new RecommendInfoDto();

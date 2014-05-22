@@ -15,6 +15,12 @@ public class Test {
 		List<NewsInfoDto> newsInfos=dbDao.getTheNewestFiveNewsInfo();
 		List<RecommendInfoDto> recommendInfos=dbDao.getTheNewestFiveRecommendInfo();
 		System.out.println(dbDao.getNewsInfoTotalNum());
+		System.out.println(dbDao.getNewsInfoByPage(1, 12).size());
+		System.out.println(dbDao.getNewsInfoById(2));
+		
+		System.out.println(dbDao.getViewPointTotalNum());
+		System.out.println(dbDao.getViewPointByPage(1, 12).size());
+		System.out.println(dbDao.getNewsInfoById(1));
 		dbDao.close();
 	}
 
