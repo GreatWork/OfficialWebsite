@@ -1,60 +1,58 @@
 package com.ow.dto;
 
-public class RecommendInfoDto {
+import java.io.Serializable;
+import java.util.Date;
 
-	private String _id;
-	private String _title;
-	private String _date;
-	private String _info;
-	private String _author;
+public class RecommendInfoDto  implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2856715052111662240L;
 	
-	public String getId(){
-		return _id;
+	private int id;
+	private String author;
+	private String title;
+	private String content;
+	private Date createTime;
+	private Date modifyTime;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
 	}
 	
-	public void setId(String id){
-		
-		_id=id;
-	}
 	
-	public String getAuthor(){
-		
-		return _author;
-	}
-	
-	public void setAuthor(String author){
-		
-		_author=author;
-	}
-	
-	public String getTitle(){
-		
-		return _title;
-	}
-	
-	public void setTitle(String title){
-		
-		_title=title;
-	}
-	
-	public String getDate(){
-		
-		return _date;
-	}
-	
-	public void setDate(String date){
-		
-		_date=date;
-	}
-	
-	public String getInfo(){
-		
-		return _info;
-	}
-	
-	public void setInfo(String info){
-		
-		_info=info;
-	}
 
 }

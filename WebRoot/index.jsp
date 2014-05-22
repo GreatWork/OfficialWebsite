@@ -80,7 +80,7 @@
 			<%
 				for(RecommendInfoDto recommendInfo:recommendInfos){
 			%>		
-			<li><a target="_blank" href="recommenddetails.jsp?id=<%=recommendInfo.getId() %>">
+			<li><a target="_blank" href="recommenddetail.jsp?id=<%=recommendInfo.getId() %>">
 			       <%=recommendInfo.getTitle() %></a>
 			       <span class="date"><%=formatTime(recommendInfo.getCreateTime()) %></span></li>
 			<%}%>							
