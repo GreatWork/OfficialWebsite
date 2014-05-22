@@ -37,11 +37,9 @@
 	<div class="banner_box">
 		<ul class="banner">
 			<li><a href="#"><img src="img/banner.jpg"></a></li>
-			<li><a href="#"><img src="img/banner_2.jpg" width="700"
-					height="300"></a></li>
+			<li><a href="#"><img src="img/banner_2.jpg" width="700"	height="300"></a></li>
 			<li><a href="#"><img src="img/banner_3.jpg"></a></li>
-			<li><a href="#"><img src="img/banner_4.jpg" width="700"
-					height="300"></a></li>
+			<li><a href="#"><img src="img/banner_4.jpg" width="700"	height="300"></a></li>
 			<li><a href="#"><img src="img/banner_5.jpg"></a></li>
 		</ul>
 		<a href="#" class="a_left"></a> <a href="#" class="a_right"></a>

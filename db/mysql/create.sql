@@ -48,3 +48,27 @@ create table if not exists InvestManager(
 create table if not exists ProductManager(
 	mgrName varchar(255) primary key not null,
 	phoneNumber varchar(50));
+
+--招聘信息表
+drop table if exists RecruitInfo;
+create table if not exists RecruitInfo(
+	id INT primary key not null auto_increment,
+	department VARCHAR(255) not null,
+	position VARCHAR(255) not null,
+	positionType VARCHAR(255) not null,
+	positionNumber INT not null,
+	positionStatement VARCHAR(255) not null,
+	positionRequirement VARCHAR(255) not null,
+	isValid INT not null,
+	creatTime TIMESTAMP，
+	modifyTime TIMESTAMP
+	);
+	
+drop table if exists ConfigInfo;
+create table if not exists ConfigInfo(
+	id INT primary key not null auto_increment,
+	name VARCHAR(255) not null,
+	detail TEXT not null,
+	creatTime TIMESTAMP，
+	modifyTime TIMESTAMP
+	);	

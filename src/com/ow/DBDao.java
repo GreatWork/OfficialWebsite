@@ -22,6 +22,7 @@ import com.ow.dto.ProductInfoDto;
 import com.ow.dto.ProductManagerDto;
 import com.ow.dto.RecommendInfo2Dto;
 import com.ow.dto.RecommendInfoDto;
+import com.ow.dto.RecruitInfoDto;
 import com.ow.dto.ViewPointDto;
 
 public class DBDao {
@@ -342,6 +343,29 @@ public class DBDao {
 	
 	}
 	
+	public List<InvestManagerDto> getInvestManagers(){
+		logger.debug("DBDao:: getInvestManagers -----------begin ");
+		List<InvestManagerDto> investManagers=new ArrayList<InvestManagerDto>();		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select mgrName,mgrInfo from InvestManager");
+			
+			while (rs.next()){
+				InvestManagerDto investManager=new InvestManagerDto(); 
+				investManager.setName(rs.getString(1));
+				investManager.setInfo(rs.getString(2));
+				
+				investManagers.add(investManager);
+			}			
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			logger.error(e, e);
+		} 
+		logger.debug("DBDao:: getInvestManagers -----------end ");
+		return investManagers;		
+	}
+	
 	public List<ProductManagerDto> getProductManagerDtos(){
 		
 		List<ProductManagerDto> productManagerDtos=null;
@@ -479,7 +503,7 @@ public class DBDao {
 			ResultSet rs = stmt
 					.executeQuery("select id,title,creatTime from NewsInfo order by creatTime desc limit 5");
 
-			if (rs.next()) {
+			while (rs.next()) {
 				NewsInfoDto newsInfo = new NewsInfoDto();
 				newsInfo.setId(rs.getInt(1));
 				newsInfo.setTitle(rs.getString(2));
@@ -682,7 +706,7 @@ public class DBDao {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select id,title,creatTime from RecommendInfo order by creatTime desc limit 5");
 			
-			if (rs.next()){
+			while (rs.next()){
 				RecommendInfoDto RecommendInfo=new RecommendInfoDto();
 				RecommendInfo.setId(rs.getInt(1));
 				RecommendInfo.setTitle(rs.getString(2));
@@ -704,15 +728,15 @@ public class DBDao {
 	public RecommendInfoDto getRecommendInfoById(int id){
 		logger.debug("DBDao:: getRecommendInfoById -----------begin ");
 		logger.debug("id = "+id);
-		RecommendInfoDto RecommendInfo=new RecommendInfoDto();
+		RecommendInfoDto recommendInfo=new RecommendInfoDto();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement("select title,content,creatTime from RecommendInfo where id = ?");				
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()){
-				RecommendInfo.setTitle(rs.getString(1));
-				RecommendInfo.setContent(rs.getString(2));
-				RecommendInfo.setCreateTime(rs.getDate(3));				
+				recommendInfo.setTitle(rs.getString(1));
+				recommendInfo.setContent(rs.getString(2));
+				recommendInfo.setCreateTime(rs.getDate(3));				
 			}			
 			rs.close();
 			pstmt.close();
@@ -720,6 +744,56 @@ public class DBDao {
 			logger.error(e, e);
 		} 
 		logger.debug("DBDao:: getTheNewestFiveRecommendInfo -----------end ");
-		return RecommendInfo;
+		return recommendInfo;
+	}
+	
+	public List<RecruitInfoDto> getVaildRecruitInfoDtos(){
+		logger.debug("DBDao:: getVaildRecruitInfoDtos -----------begin ");
+		List<RecruitInfoDto> recruitInfos=new ArrayList<RecruitInfoDto>();
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select id,department,position,positionType,positionNumber,positionStatement,positionRequirement,creatTime from RecruitInfo while isValid=1");
+			
+			while (rs.next()){
+				RecruitInfoDto recruitInfo=new RecruitInfoDto(); 
+				recruitInfo.setId(rs.getInt(1));
+				recruitInfo.setDepartment(rs.getString(2));
+				recruitInfo.setPosition(rs.getString(3));
+				recruitInfo.setPositionType(rs.getString(4));				
+				recruitInfo.setPositionNumber(rs.getInt(5));
+				recruitInfo.setPositionStatement(rs.getString(6));
+				recruitInfo.setPositionRequirement(rs.getString(7));
+				recruitInfo.setCreateTime(rs.getDate(8));
+				
+				recruitInfos.add(recruitInfo);
+			}			
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			logger.error(e, e);
+		} 
+		logger.debug("DBDao:: getVaildRecruitInfoDtos -----------end ");
+		return recruitInfos;
+	}
+	
+	public String getConfigInfoByName(String name){
+		logger.debug("DBDao:: getConfigInfoByName -----------begin ");
+		logger.debug("name = "+name);
+		String detail=null;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("select detail from ConfigInfo where name = ?");				
+			pstmt.setString(1, name);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()){
+				detail=rs.getString(1);
+			}			
+			rs.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			logger.error(e, e);
+		} 
+		logger.debug("DBDao:: getConfigInfoByName -----------end ");
+		return detail;
 	}
 }

@@ -94,10 +94,32 @@
 								</tr>
 								<tr>
 									<td style="color: #7b7b7b">
-									<br>
-									<%=viewPoint.getContent() %>									
-									</td>
-								</tr>																
+									<br />
+									<p style="background: white; text-align: right; margin: 7.8pt 0cm 0pt; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0" align="right">
+										<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+											<font face="宋体">
+												作者：<%=viewPoint.getAuthor() %>
+												<span lang="EN-US"><o:p></o:p></span>
+											</font>
+										</span>
+									</p>
+									<%
+										String[] viewPointParagraphs = viewPoint.getContent().split("\r\n");
+										for (String viewPointParagraph:viewPointParagraphs){
+									 %>
+									<p style="background: white; text-align: justify; margin: 7.8pt 0cm 0pt; text-justify: inter-ideograph; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0">
+										<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+											<font face="宋体">
+												<%=viewPointParagraph %>
+												<span lang="EN-US"><o:p></o:p></span>
+											</font>
+										</span>
+									</p>									 
+									 <%
+										}
+									 %>
+									 </td>
+								</tr>											
 								<%
 									}
 									if(newsInfo!=null){
@@ -109,9 +131,31 @@
 								</tr>								
 								<tr>
 									<td style="color: #7b7b7b">
-									<br>
-									<%=newsInfo.getContent() %>									
-									</td>
+									<br />
+									<p style="background: white; text-align: right; margin: 7.8pt 0cm 0pt; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0" align="right">
+										<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+											<font face="宋体">
+												作者：<%=newsInfo.getAuthor() %>
+												<span lang="EN-US"><o:p></o:p></span>
+											</font>
+										</span>
+									</p>
+									<%
+										String[] newsInfoParagraphs = newsInfo.getContent().split("\r\n");
+										for (String newsInfoParagraph:newsInfoParagraphs){
+									 %>
+									<p style="background: white; text-align: justify; margin: 7.8pt 0cm 0pt; text-justify: inter-ideograph; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0">
+										<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+											<font face="宋体">
+												<%=newsInfoParagraph %>
+												<span lang="EN-US"><o:p></o:p></span>
+											</font>
+										</span>
+									</p>									 
+									 <%
+										}
+									 %>
+									 </td>
 								</tr>																								<%										
 									}
 								%>							
@@ -125,8 +169,6 @@
 </div>
 
 <%!
-
-	private static final Logger logger = Logger.getLogger("com.ow.dynamic");
 	/* 时间格式化 */
 	public static String formatTime(final Date time) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
