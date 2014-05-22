@@ -1,28 +1,28 @@
---公司荣誉
+#公司荣誉
 
---动态表，公司从相关经济资讯中选取的内容
+#动态表,公司从相关经济资讯中选取的内容
 drop table if exists NewsInfo;
 create table if not exists NewsInfo(
 	id INT primary key not null auto_increment,
 	author VARCHAR(255),
 	title VARCHAR(255) not null,
 	content TEXT,
-	creatTime TIMESTAMP，
+	creatTime TIMESTAMP,
 	modifyTime TIMESTAMP
 	);
 
---视点表，公司发布的分析报告
+#视点表,公司发布的分析报告
 drop table if exists ViewPoint;
 create table if not exists ViewPoint(
 	id INT primary key not null auto_increment,
 	author VARCHAR(255),
 	title VARCHAR(255) not null,
 	content TEXT,
-	creatTime TIMESTAMP，
+	creatTime TIMESTAMP,
 	modifyTime TIMESTAMP
 	);
 
---推荐概要表
+#推荐概要表
 drop table if exists RecommendInfo;
 create table if not exists RecommendInfo(
 	recId INT primary key not null auto_increment,
@@ -31,7 +31,7 @@ create table if not exists RecommendInfo(
 	recInfo MEDIUMTEXT,
 	recTime TIMESTAMP);
 
---产品表
+#产品表
 drop table if exists ProductInfo;
 create table if not exists ProductInfo(
 	proName varchar(255) primary key not null,
@@ -39,17 +39,17 @@ create table if not exists ProductInfo(
 	productManager varchar(255),
 	proInfo text);
 
---投资经理表
+#投资经理表
 create table if not exists InvestManager(
 	mgrName varchar(255) primary key not null,
 	mgrInfo text);
 
---产品经理表
+#产品经理表
 create table if not exists ProductManager(
 	mgrName varchar(255) primary key not null,
 	phoneNumber varchar(50));
 
---招聘信息表
+#招聘信息表
 drop table if exists RecruitInfo;
 create table if not exists RecruitInfo(
 	id INT primary key not null auto_increment,
@@ -60,7 +60,7 @@ create table if not exists RecruitInfo(
 	positionStatement VARCHAR(255) not null,
 	positionRequirement VARCHAR(255) not null,
 	isValid INT not null,
-	creatTime TIMESTAMP，
+	creatTime TIMESTAMP,
 	modifyTime TIMESTAMP
 	);
 	
@@ -69,6 +69,6 @@ create table if not exists ConfigInfo(
 	id INT primary key not null auto_increment,
 	name VARCHAR(255) not null,
 	detail TEXT not null,
-	creatTime TIMESTAMP，
+	creatTime TIMESTAMP,
 	modifyTime TIMESTAMP
 	);	
