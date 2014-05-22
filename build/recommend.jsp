@@ -1,4 +1,4 @@
-<%@page import="com.ow.dto.RecommendInfo2Dto"%>
+<%@page import="com.ow.dto.RecommendInfoDto"%>
 <%@page import="java.util.List,java.util.ArrayList"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -34,9 +34,9 @@
 	if (pageInfo.getCurPageNum() > 1) {
 
 		if(pageInfo.getStartPageNum()==pageInfo.getCurPageNum()){
-			
-			pageInfo.setStartPageNum(pageInfo.getStartPageNum()-1);
-			pageInfo.setEndPageNum(pageInfo.getEndPageNum()-1);
+	
+	pageInfo.setStartPageNum(pageInfo.getStartPageNum()-1);
+	pageInfo.setEndPageNum(pageInfo.getEndPageNum()-1);
 		}
 		
 		pageInfo.setCurPageNum(pageInfo.getCurPageNum() - 1);
@@ -48,9 +48,9 @@
 	if (pageInfo.getCurPageNum() < pageInfo.getPageCount()) {
 
 		if(pageInfo.getEndPageNum()==pageInfo.getCurPageNum()){
-			
-			pageInfo.setEndPageNum(pageInfo.getEndPageNum()+1);
-			pageInfo.setStartPageNum(pageInfo.getStartPageNum()+1);
+	
+	pageInfo.setEndPageNum(pageInfo.getEndPageNum()+1);
+	pageInfo.setStartPageNum(pageInfo.getStartPageNum()+1);
 		}
 		
 		pageInfo.setCurPageNum(pageInfo.getCurPageNum() + 1);
@@ -69,7 +69,7 @@
 	dbDao.init();
 	int recId=(pageInfo.getCurPageNum() - 1)*pageInfo.MaxShowPageNum + 1;
 	int maxShowPageNum=pageInfo.MaxShowPageNum;
-	List<RecommendInfo2Dto> recommendInfoDtos=dbDao.getRecommendInfoDtos(recId, maxShowPageNum);
+	List<RecommendInfoDto> recommendInfoDtos=dbDao.getRecommendInfoDtos(recId, maxShowPageNum);
 	pageInfo.setTotalRecordCount(dbDao.getTotalRecommendCount());	
 	dbDao.close();
 %>
@@ -86,7 +86,7 @@
 			<table width="625" border="0" cellspacing="0" cellpadding="0">
 
 				<%
-					for(RecommendInfo2Dto recommendInfoDto:recommendInfoDtos){
+					for(RecommendInfoDto recommendInfoDto:recommendInfoDtos){
 				%>
 
 				<tr>
