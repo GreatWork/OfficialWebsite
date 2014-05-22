@@ -7,8 +7,15 @@
 	import="java.sql.*,javax.sql.*,javax.naming.*,com.ow.*"%>
 
 <%
-	String tmp = URLDecoder.decode(request.getParameter("t"), "UTF-8");
-	String pageTitle = new String(tmp.getBytes("ISO-8859-1"), "UTF-8");
+	DBDao dbDao = new DBDao();
+	dbDao.init();
+	int recId = Integer.parseInt(request.getParameter("id"));
+
+	RecommendInfo2Dto recommendInfoDto = dbDao.getRecommendInfoDto(recId);
+
+	String pageTitle = recommendInfoDto.getTitle();
+			
+	dbDao.close();
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,17 +31,6 @@
 </head>
 
 <jsp:include page="header.jsp" />
-
-<%
-	DBDao dbDao = new DBDao();
-	dbDao.init();
-	int recId = Integer.parseInt(request.getParameter("id"));
-
-	RecommendInfo2Dto recommendInfoDto = dbDao
-	.getRecommendInfoDto(recId);
-
-	dbDao.close();
-%>
 
 <div class="wapper clearfix">
 	<img src="img/recommend/banner_news.jpg">
