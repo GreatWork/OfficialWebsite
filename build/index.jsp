@@ -5,8 +5,7 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="org.apache.log4j.Logger"%>
 <%@ page import="com.ow.DBDao"%>
-<%@ page import="com.ow.dto.NewsInfoDto"%>
-<%@ page import="com.ow.dto.ViewPointDto"%>
+<%@ page import="com.ow.dto.*"%>
 
 <%
 	String pageTitle = "安洪投资";
@@ -52,42 +51,39 @@
 	DBDao dbDao = new DBDao();
 	dbDao.init();
 	List<NewsInfoDto> newsInfos=dbDao.getTheNewestFiveNewsInfo();
+	List<RecommendInfo2Dto> recommendInfos=dbDao.getTheNewestFiveRecommendInfo();
 	
 	dbDao.close();
 %>
 <div class="line"></div>
 <div class="wapper clearfix">
 	<div class="news_box fl mr50">
-		<h2 class="title_news">重阳动态</h2>
+		<h2 class="title_news">安洪动态</h2>
 		<a href="dynamic.jsp" target="_blank" class="a_more">MORE</a>
 		<ul class="news_ul">
-			<%for(NewsInfoDto newsInfo:newsInfos){%>		
-			<li><a target="_blank" href="dynamicdetails.jsp?id=<%=newsInfo.getId() %>>">
-					<%=newsInfo.getTitle() %>> </a> 
-				<span class="date"><%=formatTime(newsInfo.getCreateTime()) %>></span>
+			<%
+				for(NewsInfoDto newsInfo:newsInfos){
+			%>		
+			<li><a target="_blank" href="dynamicdetails.jsp?id=<%=newsInfo.getId()%>>">
+					<%=newsInfo.getTitle()%> </a> 
+				<span class="date"><%=formatTime(newsInfo.getCreateTime())%></span>
 			</li>
-			<%}%>							
+			<%
+				}
+			%>							
 		</ul>
 	</div>
 	<div class="news_box fl">
-		<h2 class="title_recommend">重阳推荐</h2>
+		<h2 class="title_recommend">安洪推荐</h2>
 		<a href="recommend.jsp" target="_blank" class="a_more">MORE</a>
 		<ul class="news_ul">
-
-			<li><a target="_blank" href="recommenddetails.jsp?id=7805">改革要成功，市场逻辑一定要战胜官场逻辑</a><span
-				class="date">04-30</span></li>
-
-			<li><a target="_blank" href="recommenddetails.jsp?id=7804">巴菲特如何从黑天鹅事件获利</a><span
-				class="date">04-30</span></li>
-
-			<li><a target="_blank" href="recommenddetails.jsp?id=7803">迎接结构调整“阵痛期”的挑战</a><span
-				class="date">04-30</span></li>
-
-			<li><a target="_blank" href="recommenddetails.jsp?id=7802">房地产市场的风险与应对</a><span
-				class="date">04-29</span></li>
-
-			<li><a target="_blank" href="recommenddetails.jsp?id=7801">“十论”概括习近平经济思想</a><span
-				class="date">04-29</span></li>
+			<%
+				for(RecommendInfo2Dto recommendInfo:recommendInfos){
+			%>		
+			<li><a target="_blank" href="recommenddetails.jsp?id=<%=recommendInfo.getId() %>">
+			       <%=recommendInfo.getTitle() %></a>
+			       <span class="date"><%=formatTime(recommendInfo.getCreateTime()) %></span></li>
+			<%}%>							
 		</ul>
 	</div>
 </div>

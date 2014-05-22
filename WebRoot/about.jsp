@@ -5,7 +5,7 @@
 <%@ page import="org.apache.log4j.Logger"%>
 
 <%
-	String pageTitle = "关于重阳";
+	String pageTitle = "关于安洪";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -60,23 +60,21 @@ td p {
 <div class="wapper clearfix overhide">
 	<div class="subleft">
 		<a href="javascript:void(0);" class="on" onclick="ClickLeftMenu('1');"
-			id="menu01">公司简介</a> <a href="javascript:void(0);"
-			onclick="ClickLeftMenu('2');" id="menu02">重阳理念</a> <a
-			href="javascript:void(0);" onclick="ClickLeftMenu('3');" id="menu03">投资经理</a>
-		<a href="javascript:void(0);" onclick="ClickLeftMenu('4');"
-			id="menu04">投研团队</a> <a href="javascript:void(0);"
-			onclick="ClickLeftMenu('5');" id="menu05">公司荣誉</a> <a
-			href="javascript:void(0);" onclick="ClickLeftMenu('6');" id="menu06">诚聘英才</a>
+			id="menu01">公司简介</a> 
+		<a href="javascript:void(0);" onclick="ClickLeftMenu('2');" id="menu02">安洪理念</a> 
+		<a href="javascript:void(0);" onclick="ClickLeftMenu('3');" id="menu03">投资经理</a>
+		<a href="javascript:void(0);" onclick="ClickLeftMenu('4');"	id="menu04">投研团队</a> 
+		<a href="javascript:void(0);" onclick="ClickLeftMenu('5');" id="menu05">公司荣誉</a> 
+		<a href="javascript:void(0);" onclick="ClickLeftMenu('6');" id="menu06">诚聘英才</a>
 	</div>
 	<div id="page01" class="rightcontent wordbox" style="display: none;">
 		<p>
-			上海重阳投资管理有限公司（以下简称“重阳投资”）专注于资产管理业务，于2009年在上海重阳投资有限公司的基础上设立，是一家采用合伙模式经营的有限责任公司。</p>
+			&nbsp;&nbsp;上海安洪投资管理有限公司成立于2014年4月。公司由具有20年证券投资经历的李洪波先生发起建立，是一个年轻而富有朝气的资产管理公司。公司创始人李洪波先生具有长期国内著名基金管理公司丰富的投研管理经验，曾担任国联安德盛精选基金经理，管理资金规模近百亿元。
+		</p>
+		<br /> 
+		<br /> 
 		<p>
-			经过多年市场考验，重阳投资的投资哲学在实践中得到不断验证和完善，形成了独特的投研流程，并一以贯之地坚持。重阳投资注重做好各种情景模式下的应变准备，强调在不确定环境中的决策质量是获取稳定持续的超额收益的关键。</p>
-		<p>
-			重阳投资分别于2009年、2010年、2011年、2012年连续四年被评为金牛阳光私募管理公司。截至2014年2月，公司拥有多个管理型信托产品，资产管理规模超100亿元。团队是公司的核心竞争力，重阳投资团队成员均具有良好的教育背景和丰富的资产管理行业从业经验。</p>
-		<p>
-			重阳投资一直秉承“真诚汇智、持续成长”的企业经营理念，严格实践风险可控和收益持续的核心投资理念，公司投研流程经过多年积累与完善，日臻科学严谨。我们将一如既往地以行业高标准打造投资研究、风险控制和客户服务体系，实现与客户财富的共同成长。
+			&nbsp;&nbsp;安洪投资秉承“复利投资，稳健增长”的投资理念，“大胆假设、小心求证、谨慎投资”的投资方法。我们既专注投资于具有广阔成长空间和强大竞争力的成长型企业，也充分重视绝对价值明显低估，具备大量隐形资产的企业投资。
 		</p>
 	</div>
 	<div id="page02" class="rightcontent wordbox" style="display: none;">

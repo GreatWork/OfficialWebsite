@@ -50,6 +50,6 @@ public class ProductInfoDto {
 	private String _name;
 	private String _investManager;
 	private String _productManager;
-	private String _info;
+	private String _info; 
 
 }

@@ -50,9 +50,9 @@
 				<li id="m_pro"><a href="products.jsp">产品与服务</a>
 					<p class="submenu">
 						<a href="products.jsp">信托产品</a>
-						<a href="products.jsp?k=3">认购流程</a>
-						<a href="products.jsp?k=4">常见问题</a>
-						<a href="products.jsp?k=5">产品咨询</a>
+						<a href="products.jsp?k=2">认购流程</a>
+						<a href="products.jsp?k=3">常见问题</a>
+						<a href="products.jsp?k=4">产品咨询</a>
 						<i class="sj"></i>
 						<i class="rightborder"></i>
 					</p>
