@@ -62,7 +62,7 @@
 			<%
 				for(NewsInfoDto newsInfo:newsInfos){
 			%>		
-			<li><a target="_blank" href="dynamicdetails.jsp?id=<%=newsInfo.getId()%>>">
+			<li><a target="_blank" href="dynamicdetail.jsp?id=<%=newsInfo.getId()%>">
 					<%=newsInfo.getTitle()%> </a> 
 				<span class="date"><%=formatTime(newsInfo.getCreateTime())%></span>
 			</li>

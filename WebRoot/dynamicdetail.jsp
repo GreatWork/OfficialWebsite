@@ -13,7 +13,7 @@
 
 <%
 	String idPara = request.getParameter("id");
-	String k  = request.getParameter("k");
+	String kPara  = request.getParameter("k");
 	ViewPointDto viewPoint=null;
 	NewsInfoDto newsInfo=null;
 	int id=-1;
@@ -25,7 +25,8 @@
 	
 	DBDao dbDao = new DBDao();
 	dbDao.init();
-	if(k.equals("2")){
+	if(kPara!=null && kPara.trim().length()>0 
+			&& kPara.equals("2")){
 		viewPoint=dbDao.getViewPointById(id);
 		pageTitle=viewPoint.getTitle();
 	}else{
