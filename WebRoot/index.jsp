@@ -51,7 +51,7 @@
 	DBDao dbDao = new DBDao();
 	dbDao.init();
 	List<NewsInfoDto> newsInfos=dbDao.getTheNewestFiveNewsInfo();
-	List<RecommendInfo2Dto> recommendInfos=dbDao.getTheNewestFiveRecommendInfo();
+	List<RecommendInfoDto> recommendInfos=dbDao.getTheNewestFiveRecommendInfo();
 	
 	dbDao.close();
 %>
@@ -78,7 +78,7 @@
 		<a href="recommend.jsp" target="_blank" class="a_more">MORE</a>
 		<ul class="news_ul">
 			<%
-				for(RecommendInfo2Dto recommendInfo:recommendInfos){
+				for(RecommendInfoDto recommendInfo:recommendInfos){
 			%>		
 			<li><a target="_blank" href="recommenddetails.jsp?id=<%=recommendInfo.getId() %>">
 			       <%=recommendInfo.getTitle() %></a>

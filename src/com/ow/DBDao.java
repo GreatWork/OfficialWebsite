@@ -21,7 +21,7 @@ import com.ow.dto.NewsInfoDto;
 import com.ow.dto.ProductInfoDto;
 import com.ow.dto.ProductManagerDto;
 
-import com.ow.dto.RecommendInfo2Dto;
+import com.ow.dto.RecommendInfoDto;
 import com.ow.dto.ViewPointDto;
 
 public class DBDao {
@@ -41,7 +41,7 @@ public class DBDao {
 	}
 
 
-	public void init() {
+/*	public void init() {
 		logger.debug("DBDao:: init -----------begin ");
 
 		try {
@@ -59,30 +59,31 @@ public class DBDao {
 		}
 
 		logger.debug("DBDao:: init -----------end ");
+	}*/
+	
+	public void init() {
+		logger.debug("DBDao:: init -----------begin ");
+
+		try {
+			Properties props = new Properties();
+			InputStream in = new BufferedInputStream(new FileInputStream(
+					"config.properties"));
+			props.load(in);
+
+			String dbDriver = props.getProperty("database.driverClassName");
+			String dbUrl = props.getProperty("database.url");
+			String dbUser = props.getProperty("database.username");
+			String dbPwd = props.getProperty("database.password");
+
+			Class.forName(dbDriver);
+			conn = java.sql.DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+
+		} catch (Exception e) {
+			logger.error(e, e);
+		}
+
+		logger.debug("DBDao:: init -----------end ");
 	}
-//	public void init() {
-//		logger.debug("DBDao:: init -----------begin ");
-//
-//		try {
-//			Properties props = new Properties();
-//			InputStream in = new BufferedInputStream(new FileInputStream(
-//					"config.properties"));
-//			props.load(in);
-//
-//			String dbDriver = props.getProperty("database.driverClassName");
-//			String dbUrl = props.getProperty("database.url");
-//			String dbUser = props.getProperty("database.username");
-//			String dbPwd = props.getProperty("database.password");
-//
-//			Class.forName(dbDriver);
-//			conn = java.sql.DriverManager.getConnection(dbUrl, dbUser, dbPwd);
-//
-//		} catch (Exception e) {
-//			logger.error(e, e);
-//		}
-//
-//		logger.debug("DBDao:: init -----------end ");
-//	}
 	
 	public void close() {
 		logger.debug("DBDao:: close -----------begin ");
@@ -97,9 +98,9 @@ public class DBDao {
 	}
 
 	/**
-	 * ----------------------------------------- RecommendInfoDto操作
+	 * ----------------------------------------- 
+	 * RecommendInfoDto操作
 	 * -----------------------------------------
-<<<<<<< HEAD
 	 */
 	
 	/**
@@ -108,12 +109,12 @@ public class DBDao {
 	 * @param maxShowPageNum	当前页面最大显示个数
 	 * @return
 	 */
-	public List<RecommendInfo2Dto> getRecommendInfoDtos(int recId,
+	public List<RecommendInfoDto> getRecommendInfoDtos(int recId,
 			int maxShowPageNum) {
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		List<RecommendInfo2Dto> recommendInfoDtos = null;
+		List<RecommendInfoDto> recommendInfoDtos = null;
 		try {
 
 			stmt = conn
@@ -128,7 +129,7 @@ public class DBDao {
 			String dateString = "";
 			String id = "";
 
-			recommendInfoDtos = new ArrayList<RecommendInfo2Dto>();
+			recommendInfoDtos = new ArrayList<RecommendInfoDto>();
 			
 			while (rs.next()) {
 
@@ -136,7 +137,7 @@ public class DBDao {
 				title = rs.getString(2);
 				dateString = rs.getDate(3).toString();
 
-				RecommendInfo2Dto recommendInfoDto = new RecommendInfo2Dto();
+				RecommendInfoDto recommendInfoDto = new RecommendInfoDto();
 				recommendInfoDto.setId(id);
 				recommendInfoDto.setDate(dateString);
 				recommendInfoDto.setTitle(title);
@@ -159,11 +160,11 @@ public class DBDao {
 		return recommendInfoDtos;
 	}
 	
-	public RecommendInfo2Dto getRecommendInfoDto(int recId) {
+	public RecommendInfoDto getRecommendInfoDto(int recId) {
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		RecommendInfo2Dto recommendInfoDto = null;
+		RecommendInfoDto recommendInfoDto = null;
 		try {
 
 			stmt = conn
@@ -180,7 +181,7 @@ public class DBDao {
 
 			if(rs.next()) {
 
-				recommendInfoDto=new RecommendInfo2Dto();
+				recommendInfoDto=new RecommendInfoDto();
 				
 				author = rs.getString(1);
 				title = rs.getString(2);
@@ -621,26 +622,7 @@ public class DBDao {
 		logger.debug("DBDao:: getViewPointById -----------end ");
 		return viewPoint;
 	}
-	
-	/**-----------------------------------------
-	 * RecommendInfo操作
-	 * -----------------------------------------
-	 */
-	public int getRecommendInfoTotalNum(){
-		logger.debug("DBDao:: getRecommendInfoTotalNum -----------begin ");
-		int totalNum=0;
-		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select count(1) from RecommendInfo");
-			if (rs.next()){
-				totalNum = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			logger.error(e, e);
-		} 
-		logger.debug("DBDao:: getRecommendInfoTotalNum totalNum="+totalNum+"-----------end ");
-		return totalNum;
-	}
+
 	
 	
 	
