@@ -247,9 +247,6 @@ td p {
 	</div>
 </div>
 
-<%!private static final Logger logger = Logger
-			.getLogger("com.chongyang.index");%>
-
 <jsp:include page="footer.jsp" />
 
 </form>

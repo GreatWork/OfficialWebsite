@@ -11,16 +11,17 @@
 	String pageTitle = "安洪投资";
 %>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="ctl00_Head1">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" ></meta>
 <title><%=pageTitle%></title>
-<link href="css/common.css" type="text/css" rel="stylesheet" />
+<link href="css/common.css" type="text/css" rel="stylesheet" ></link>
+
 <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
 <script type="text/javascript" language="javascript"
 	src="js/seanObject.js"></script>
 <script src="js/common.js" type="text/javascript"></script>
-
 </head>
 
 <jsp:include page="header.jsp" />
@@ -87,41 +88,40 @@
 </div>
 <div class="line"></div>
 <div class="wapper clearfix">
-	<img src="img/demo_1.jpg" class="fl mr13"> <img
-		src="img/demo_2.jpg" class="fl mr13"> <img src="img/demo_3.jpg"
-		class="fl "></a>
+	<img src="img/demo_1.jpg" class="fl mr13" /> 
+	<img src="img/demo_2.jpg" class="fl mr13" /> 
+	<img src="img/demo_3.jpg" class="fl " />
 </div>
-<script type="text/javascript">
-        $(function() {
-            function scroll() {
-                var z = $('.banner li').size(), w = (z + 1) * 700, i = 0;
-                $('.banner li').first().clone().appendTo('.banner');
-                $('.banner').width(w);
-                $('.a_right').click(function() {
-                    if (i + z <= 0) { i = 0; $('.banner').css({ 'left': 0 }); }
-                    i--;
-                    scroll(i);
 
-                });
-                $('.a_left').click(function() {
-                    if (i >= 0) { i = -z; }
-                    $('.banner').css({ 'left': i * 700 });
-                    i++;
-                    scroll(i);
-                });
-                function scroll(m) {
-                    $('.banner').animate({ 'left': m * 700 }, 1000);
-                    if (i + z <= 0) { i = 1; }
-                    if (i >= 0) { i = -z; }
-                }
-            }
-            scroll();
-        });
-    </script>
+<script type="text/javascript">
+       $(function() {
+           function scroll() {
+               var z = $('.banner li').size(), w = (z + 1) * 700, i = 0;
+               $('.banner li').first().clone().appendTo('.banner');
+               $('.banner').width(w);
+               $('.a_right').click(function() {
+                   if (i + z <= 0) { i = 0; $('.banner').css({ 'left': 0 }); }
+                   i--;
+                   scroll(i);
+
+               });
+               $('.a_left').click(function() {
+                   if (i >= 0) { i = -z; }
+                   $('.banner').css({ 'left': i * 700 });
+                   i++;
+                   scroll(i);
+               });
+               function scroll(m) {
+                   $('.banner').animate({ 'left': m * 700 }, 1000);
+                   if (i + z <= 0) { i = 1; }
+                   if (i >= 0) { i = -z; }
+               }
+           }
+           scroll();
+       });
+</script>
 
 <%!
-	private static final Logger logger = Logger.getLogger("com.ow.index");
-
 	/* 时间格式化 */
 	public static String formatTime(final Date time) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -134,3 +134,7 @@
 %>
 
 <jsp:include page="footer.jsp" />
+
+</form>
+</body>
+</html>

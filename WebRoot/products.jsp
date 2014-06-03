@@ -570,3 +570,7 @@ function ClickAccountManagement() {
 </div>
 
 <jsp:include page="footer.jsp" />
+
+</form>
+</body>
+</html>

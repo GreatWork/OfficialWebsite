@@ -238,8 +238,6 @@
 
 
 <%!
-
-	private static final Logger logger = Logger.getLogger("com.ow.dynamic");
 	/* 时间格式化 */
 	public static String formatTime(final Date time) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
