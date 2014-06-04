@@ -40,12 +40,12 @@ body{font:12px/20px Verdana, 'simsun', Geneva, sans-serif; color:#5f5f5f; backgr
 .club a{color:#fff;}
 .club a:hover{color:orange;}
 
-.banner_box{float:left; width:900px; height:300px; position:relative; overflow:hidden;}
+.banner_box{float:left; width:100%; height:300px; position:relative; overflow:hidden;}
 .banner{position:absolute; left:0; width:3500px; height:300px; top:0;}
 .banner li{float:left;}
 .a_left,.a_right{width:60px; height:60px; position:absolute; top:120px;  z-index:5;}
 .a_left{ background:url(../img/a_left.png) no-repeat; left:20px;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/a_right.png" ,sizingMethod="noscale");}
-.a_right{background:url(../img/a_right.png) no-repeat; left:620px;_background:none;}
+.a_right{background:url(../img/a_right.png) no-repeat; right:20px;_background:none;}
 
 .news_box{width:440px;}
 .mr50{margin-right:50px;}
