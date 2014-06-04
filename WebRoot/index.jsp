@@ -27,20 +27,20 @@
 <jsp:include page="header.jsp" />
 
 <div class="wapper clearfix">
-	<div class="club">
+	<!-- div class="club">
 		<ul>
 			<li><a href="products.jsp?k=3">信托产品</a></li>
 			<li><a href="products.jsp?k=2">认购流程</a></li>
 			<li><a href="about.jsp?k=6">诚聘英才</a></li>
 			<li><a href="contact.jsp">联系我们</a></li>
 		</ul>
-	</div>
+	</div -->
 	<div class="banner_box">
 		<ul class="banner">
-			<li><a href="#"><img src="img/banner.jpg"></a></li>
-			<li><a href="#"><img src="img/banner_2.jpg" width="700"	height="300"></a></li>
+			<li><a href="#"><img src="img/banner_1.jpg"></a></li>
+			<li><a href="#"><img src="img/banner_2.jpg"></a></li>
 			<li><a href="#"><img src="img/banner_3.jpg"></a></li>
-			<li><a href="#"><img src="img/banner_4.jpg" width="700"	height="300"></a></li>
+			<li><a href="#"><img src="img/banner_4.jpg"></a></li>
 			<li><a href="#"><img src="img/banner_5.jpg"></a></li>
 		</ul>
 		<a href="#" class="a_left"></a> <a href="#" class="a_right"></a>
@@ -57,7 +57,7 @@
 <div class="line"></div>
 <div class="wapper clearfix">
 	<div class="news_box fl mr50">
-		<h2 class="title_news">安洪动态</h2>
+		<h2 class="title_news">公司新闻</h2>
 		<a href="dynamic.jsp" target="_blank" class="a_more">MORE</a>
 		<ul class="news_ul">
 			<%
@@ -73,7 +73,7 @@
 		</ul>
 	</div>
 	<div class="news_box fl">
-		<h2 class="title_recommend">安洪推荐</h2>
+		<h2 class="title_recommend">行业推荐</h2>
 		<a href="recommend.jsp" target="_blank" class="a_more">MORE</a>
 		<ul class="news_ul">
 			<%

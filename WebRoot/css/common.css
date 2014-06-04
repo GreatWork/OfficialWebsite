@@ -40,7 +40,7 @@ body{font:12px/20px Verdana, 'simsun', Geneva, sans-serif; color:#5f5f5f; backgr
 .club a{color:#fff;}
 .club a:hover{color:orange;}
 
-.banner_box{float:left; width:700px; height:300px; position:relative; overflow:hidden;}
+.banner_box{float:left; width:900px; height:300px; position:relative; overflow:hidden;}
 .banner{position:absolute; left:0; width:3500px; height:300px; top:0;}
 .banner li{float:left;}
 .a_left,.a_right{width:60px; height:60px; position:absolute; top:120px;  z-index:5;}
@@ -49,8 +49,8 @@ body{font:12px/20px Verdana, 'simsun', Geneva, sans-serif; color:#5f5f5f; backgr
 
 .news_box{width:440px;}
 .mr50{margin-right:50px;}
-.title_news{width:256px; height:30px; background:url(../img/bg.png) -350px 0 no-repeat; float:left; text-indent:-990em; overflow:hidden;}
-.title_recommend{width:370px; height:30px; background:url(../img/bg.png) -350px -50px no-repeat; float:left; text-indent:-990em; overflow:hidden;}
+.title_news{width:256px; height:30px; background:url(../img/bg_02.png)  0 0 no-repeat; float:left; text-indent:-990em; overflow:hidden;}
+.title_recommend{width:370px; height:30px; background:url(../img/bg_01.png) 0 0 no-repeat; float:left; text-indent:-990em; overflow:hidden;}
 .a_more{width:65px; height:20px; color:#fff; text-align:center; line-height:20px; background:#c7eafb; border-radius:3px; float:right; font-family:arail;}
 
 .news_content{float:left; line-height:20px; width:620px; margin-right:10px;}
