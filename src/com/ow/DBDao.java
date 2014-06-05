@@ -68,7 +68,7 @@ public class DBDao {
 
 		try {
 			String dbDriver = "com.mysql.jdbc.Driver";
-			String dbUrl = "jdbc:mysql://218.244.133.28:3306/owdb?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
+			String dbUrl = "jdbc:mysql://127.0.0.1:3306/owdb?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
 			String dbUser = "anhong";
 			String dbPwd = "anhongmgr";
 
