@@ -13,7 +13,7 @@
 
 
 		<div class="wapper header">
-			<a href="index.jsp" class="fl"><img src="img/logo.png"></a>
+			<a href="index.jsp" class="fl"><img src="img/logo.jpg" width="175px" height="91px"></a>
 			<!-- table height="10px" border="0" cellspacing="0" cellpadding="0"
 				style="margin-left: 10px; margin-right: 0px;">
 				<tr>
@@ -25,7 +25,7 @@
 				</tr>
 			</table -->
 			<ul class="menu">
-			    <!-- li><a href="index.jsp" class="fl"><img src="img/logo.png"></a></li -->			
+			    <!-- li><a href="index.jsp" class="fl"><img src="img/logo.jpg"></a></li -->			
 				<li><a href="index.jsp">首页</a></li>
 				<li><a href="about.jsp">关于安洪</a>
 					<p class="submenu">
