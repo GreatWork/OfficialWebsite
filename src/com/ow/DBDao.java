@@ -115,7 +115,7 @@ public class DBDao {
 		try {
 
 			stmt = conn
-					.prepareStatement("select recId,recTitle,recTime from recommendinfo where recId >= ? limit ?");
+					.prepareStatement("select recId,recTitle,recTime from RecommendInfo where recId >= ? limit ?");
 
 			stmt.setInt(1, recId);
 			stmt.setInt(2, maxShowPageNum);
@@ -165,7 +165,7 @@ public class DBDao {
 		try {
 
 			stmt = conn
-					.prepareStatement("select recAuthor,recTitle,recInfo,recTime from recommendinfo where recId = ? ");
+					.prepareStatement("select recAuthor,recTitle,recInfo,recTime from RecommendInfo where recId = ? ");
 
 			stmt.setInt(1, recId);
 
@@ -219,7 +219,7 @@ public class DBDao {
 		try {
 
 			stmt = conn
-					.prepareStatement("select count(1) from recommendinfo");
+					.prepareStatement("select count(1) from RecommendInfo");
 
 			rs = stmt.executeQuery();
 
