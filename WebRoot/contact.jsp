@@ -45,11 +45,11 @@
 
 		<div style="width: 625px;">
 			<strong>上海安洪投资管理有限公司</strong>
-			<br /> 地址：*****
-			<br /> 邮编： 
+			<br /> 地址：上海市浦东新区源深路1088号葛洲坝大厦15楼
+			<br /> 邮编： 200122
 			<br /> 电话： 
 			<br /> 传真： 
-			<br /> 电邮：<a class="email" target="_blank" href="mailto:chongyang@anhong.net">anhong@anhong.net</a>
+			<br /> 电邮：<a class="email" target="_blank" href="mailto:anhong@anhong.com">anhong@anhong.com</a>
 
 		</div>
 

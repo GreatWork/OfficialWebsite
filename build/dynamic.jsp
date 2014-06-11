@@ -47,8 +47,8 @@
 		newsInfoTable.setCurPageNum(Integer.parseInt(curPages[0]));
 		viewPointTable.setCurPageNum(Integer.parseInt(curPages[1]));
 	} else {
-		newsInfoTable.setCurPageNum(0);
-		viewPointTable.setCurPageNum(0);
+		newsInfoTable.setCurPageNum(1);
+		viewPointTable.setCurPageNum(1);
 	}
 	DBDao dbDao = new DBDao();
 	dbDao.init();
@@ -89,7 +89,7 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td width="505"><a href="dynamicdetails.jsp?id=<%=newsInfo.getId() %>">
+						<td width="505"><a href="dynamicdetail.jsp?id=<%=newsInfo.getId() %>">
 								<%=newsInfo.getTitle() %></a></td>
 						<td width="120" align="right" style="font-family: Tahoma;">
 							<%=formatTime(newsInfo.getCreateTime()) %></td>
@@ -113,9 +113,13 @@
 							</td>
 							<td valign="bottom" align="notset" nowrap="true" class=""
 								style="width: 60%;">
+								<% 
+									if(newsInfoTable.getCurPageNum()>1){
+								%>
 								<a href="dynamic.jsp?page=1A<%=viewPointTable.getCurPageNum() %>" style="margin-right: 5px;">&lt;&lt;</a>
 								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum()-1%>A<%=viewPointTable.getCurPageNum() %>" style="margin-right: 5px;">&lt;</a>
-								<%
+								<%								
+									}
 									int newsInfoCardinalNum=newsInfoTable.getCurPageNum()/TableDto.MAX_SHOW_PAGE_NUM;	//第几个10
 							    	int newsInfoBeginPageNum=newsInfoCardinalNum*TableDto.MAX_SHOW_PAGE_NUM;								
 									
@@ -126,16 +130,21 @@
 
 								    for(int i=1;i<=TableDto.MAX_SHOW_PAGE_NUM && newsInfoBeginPageNum+i<=newsInfoTable.getPageCount();i++){										
 								%>
-								<a href="dynamic.jsp?page=<%=newsInfoBeginPageNum+i %>A<%=viewPointTable.getCurPageNum() %>" style="margin-right: 5px;">&lt;&lt;</a>
+								<a href="dynamic.jsp?page=<%=newsInfoBeginPageNum+i %>A<%=viewPointTable.getCurPageNum() %>" style="margin-right: 5px;"><%=newsInfoBeginPageNum+i %></a>
 								<%  }
 								    
 							    	if(newsInfoBeginPageNum+TableDto.MAX_SHOW_PAGE_NUM<newsInfoTable.getPageCount()){										
 								%>
 								<a href="dynamic.jsp?page=<%=newsInfoBeginPageNum+TableDto.MAX_SHOW_PAGE_NUM %>A<%=viewPointTable.getCurPageNum() %>" style="margin-right: 5px;">...</a>
 								<%	}
+							    	if(newsInfoTable.getCurPageNum()<newsInfoTable.getPageCount()){
 								%>
-								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum()-1 %>A<%=viewPointTable.getCurPageNum() %>" style="margin-right: 5px;">&gt;</a>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum()+1 %>A<%=viewPointTable.getCurPageNum() %>" style="margin-right: 5px;">&gt;</a>
 								<a href="dynamic.jsp?page=<%=newsInfoTable.getPageCount() %>A<%=viewPointTable.getCurPageNum() %>" style="margin-right: 5px;">&gt;&gt;</a>
+								<%
+							    	}
+								%>
+								<input type="text" value="<%=newsInfoTable.getCurPageNum() %>" name="ctl00$cpContent$AspNetPager1_input" id="ctl00$cpContent$AspNetPager1_input" onkeydown="ANP_keydown(event,'ctl00$cpContent$AspNetPager1_btn');" style="width:30px;" />
 							</td>
 						</tr>
 					</tbody>
@@ -160,7 +169,7 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td width="505"><a href="dynamicdetails.jsp?id=<%=viewPoint.getId() %>&amp;k=2">
+						<td width="505"><a href="dynamicdetail.jsp?id=<%=viewPoint.getId() %>&amp;k=2">
 								<%=viewPoint.getTitle() %></a>
 						</td>
 						<td width="120" align="right" style="font-family: Tahoma;">
@@ -180,14 +189,18 @@
 						<tr>
 							<td valign="bottom" align="left" nowrap="true"
 								style="width: 40%;">
-								<font color="#0C3855"><%=newsInfoTable.getTotalRecordCount()%></font>条/
-								<font color="#0C3855"><%=newsInfoTable.getPageCount()%></font>页
+								<font color="#0C3855"><%=viewPointTable.getTotalRecordCount()%></font>条/
+								<font color="#0C3855"><%=viewPointTable.getPageCount()%></font>页
 							</td>
 							<td valign="bottom" align="notset" nowrap="true" class=""
 								style="width: 60%;">
+								<% 
+									if(viewPointTable.getCurPageNum()>1){
+								%>
 								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A1&k=2" style="margin-right: 5px;">&lt;&lt;</a>
 								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum()%>A<%=viewPointTable.getCurPageNum()-1 %>&k=2" style="margin-right: 5px;">&lt;</a>
 								<%
+									}
 									int viewPointCardinalNum=viewPointTable.getCurPageNum()/TableDto.MAX_SHOW_PAGE_NUM;	//第几个10
 							    	int viewPointBeginPageNum=viewPointCardinalNum*TableDto.MAX_SHOW_PAGE_NUM;								
 									
@@ -198,16 +211,21 @@
 
 								    for(int i=1;i<=TableDto.MAX_SHOW_PAGE_NUM && viewPointBeginPageNum+i<=viewPointTable.getPageCount();i++){										
 								%>
-								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=viewPointBeginPageNum+i %>&k=2" style="margin-right: 5px;">&lt;&lt;</a>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=viewPointBeginPageNum+i %>&k=2" style="margin-right: 5px;"><%=viewPointBeginPageNum+i %></a>
 								<%  }
 								    
 							    	if(viewPointBeginPageNum+TableDto.MAX_SHOW_PAGE_NUM<newsInfoTable.getPageCount()){										
 								%>
 								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=viewPointBeginPageNum+TableDto.MAX_SHOW_PAGE_NUM %>&k=2" style="margin-right: 5px;">...</a>
 								<%	}
+							    	if(viewPointTable.getCurPageNum()<viewPointTable.getPageCount()){
 								%>
 								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=viewPointTable.getCurPageNum()-1 %>&k=2" style="margin-right: 5px;">&gt;</a>
 								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=viewPointTable.getPageCount() %>&k=2" style="margin-right: 5px;">&gt;&gt;</a>
+								<%
+							    	}
+								%>
+								<input type="text" value="<%=viewPointTable.getCurPageNum() %>" name="ctl00$cpContent$AspNetPager1_input" id="ctl00$cpContent$AspNetPager1_input" onkeydown="ANP_keydown(event,'ctl00$cpContent$AspNetPager1_btn');" style="width:30px;" />
 							</td>						
 						</tr>
 					</tbody>
@@ -220,8 +238,6 @@
 
 
 <%!
-
-	private static final Logger logger = Logger.getLogger("com.ow.dynamic");
 	/* 时间格式化 */
 	public static String formatTime(final Date time) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

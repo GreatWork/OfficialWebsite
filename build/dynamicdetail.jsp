@@ -1,3 +1,5 @@
+<%@page import="com.ow.dto.NewsInfoDto"%>
+<%@page import="com.ow.dto.ViewPointDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
@@ -5,10 +7,34 @@
 <%@ page import="org.apache.log4j.Logger"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.net.URLEncoder"%>
+<%@ page import="com.ow.DBDao"%>
+<%@ page import="com.ow.dto.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 
 <%
-	String tmp = URLDecoder.decode(request.getParameter("t"), "UTF-8");
-	String pageTitle = new String(tmp.getBytes("ISO-8859-1"), "UTF-8");
+	String idPara = request.getParameter("id");
+	String kPara  = request.getParameter("k");
+	ViewPointDto viewPoint=null;
+	NewsInfoDto newsInfo=null;
+	int id=-1;
+	if (idPara != null && idPara.trim().length() > 0) {
+		id=Integer.parseInt(idPara);
+	}
+	
+	String pageTitle = null;
+	
+	DBDao dbDao = new DBDao();
+	dbDao.init();
+	if(kPara!=null && kPara.trim().length()>0 
+			&& kPara.equals("2")){
+		viewPoint=dbDao.getViewPointById(id);
+		pageTitle=viewPoint.getTitle();
+	}else{
+		newsInfo=dbDao.getNewsInfoById(id);
+		pageTitle=newsInfo.getTitle();
+	}
+	
+	dbDao.close();
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -59,77 +85,81 @@
 					<td>
 						<table width="625" border="0" cellspacing="0" cellpadding="0">
 							<tbody>
+								<%
+									if(viewPoint!=null){								
+								%>
 								<tr>
 									<td><strong style="color: #0F3653; font-weight: bolder">
-											重阳降息点评：降低融资成本，刺激信贷需求</strong>&nbsp;2012-7-5 20:18:32&nbsp;&nbsp;</td>
+											<%=viewPoint.getTitle() %></strong>&nbsp;<%=formatTime(viewPoint.getCreateTime()) %>&nbsp;&nbsp;
+									</td>
 								</tr>
 								<tr>
-									<td style="color: #7b7b7b"><br>
-										<p
-											style="text-align: left; line-height: 200%; text-indent: 18pt; margin: 6pt 0cm 0pt; layout-grid-mode: char; mso-para-margin-top: .5gd; mso-char-indent-count: 2.0; mso-layout-grid-align: none"
-											class="MsoNormal" align="left">
-											<span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">央行年内第二次下调存贷款基准利率。其中，一年期存款基准利率下调</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">0.25</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">个百分点至</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">3.0%</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">，一年期贷款基准利率下调</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">0.31</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">个百分点至</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">6.0%</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">。此外，活期存款利率下调</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">0.05</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">个百分点，</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">3</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">个月及</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">6</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">个月存款利率下调</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">0.25</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">个百分点，</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">2</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">年期及以上存款利率上调</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">0.35-0.40</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">个百分点。贷款方面，除</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">1</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">年期外，其他各期限贷款利率均下调</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">0.25</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">个百分点。更重要的是，央行进一步将金融机构贷款利率浮动区间的下限由基准利率的</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">0.8</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">倍调整为</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">0.7</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">倍，进一步扩大了银行的贷款定价空间。</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><o:p></o:p></span>
-										</p>
-										<p
-											style="text-align: left; line-height: 200%; text-indent: 18pt; margin: 6pt 0cm 0pt; layout-grid-mode: char; mso-para-margin-top: .5gd; mso-char-indent-count: 2.0; mso-layout-grid-align: none"
-											class="MsoNormal" align="left">
-											<span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">在经济下行的背景下，企业盈利能力下降，信贷需求也相对疲弱。据媒体报道，</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">6</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">月降息后信贷并无显著增长，四大行新增贷款仅为</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><font face="Calibri">1880</font></span><span
-												style="line-height: 200%; font-family: 宋体; color: gray; font-size: 9pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-themecolor: background1; mso-themeshade: 128">亿元。央行连续第二个月降息并下调贷款利率浮动区间下限，意在降低融资成本，刺激企业信贷需求。</span><span
-												style="line-height: 200%; color: gray; font-size: 9pt; mso-themecolor: background1; mso-themeshade: 128"
-												lang="EN-US"><o:p></o:p></span>
-										</p></td>
-								</tr>
+									<td style="color: #7b7b7b">
+									<br />
+									<p style="background: white; text-align: right; margin: 7.8pt 0cm 0pt; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0" align="right">
+										<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+											<font face="宋体">
+												作者：<%=viewPoint.getAuthor() %>
+												<span lang="EN-US"><o:p></o:p></span>
+											</font>
+										</span>
+									</p>
+									<%
+										String[] viewPointParagraphs = viewPoint.getContent().split("\r\n");
+										for (String viewPointParagraph:viewPointParagraphs){
+									 %>
+									<p style="background: white; text-align: justify; margin: 7.8pt 0cm 0pt; text-justify: inter-ideograph; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0">
+										<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+											<font face="宋体">
+												<%=viewPointParagraph %>
+												<span lang="EN-US"><o:p></o:p></span>
+											</font>
+										</span>
+									</p>									 
+									 <%
+										}
+									 %>
+									 </td>
+								</tr>											
+								<%
+									}
+									if(newsInfo!=null){
+								%>
+								<tr>
+									<td><strong style="color: #0F3653; font-weight: bolder">
+											<%=newsInfo.getTitle() %></strong>&nbsp;<%=formatTime(newsInfo.getCreateTime()) %>&nbsp;&nbsp;
+									</td>
+								</tr>								
+								<tr>
+									<td style="color: #7b7b7b">
+									<br />
+									<p style="background: white; text-align: right; margin: 7.8pt 0cm 0pt; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0" align="right">
+										<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+											<font face="宋体">
+												作者：<%=newsInfo.getAuthor() %>
+												<span lang="EN-US"><o:p></o:p></span>
+											</font>
+										</span>
+									</p>
+									<%
+										String[] newsInfoParagraphs = newsInfo.getContent().split("\r\n");
+										for (String newsInfoParagraph:newsInfoParagraphs){
+									 %>
+									<p style="background: white; text-align: justify; margin: 7.8pt 0cm 0pt; text-justify: inter-ideograph; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0">
+										<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+											<font face="宋体">
+												<%=newsInfoParagraph %>
+												<span lang="EN-US"><o:p></o:p></span>
+											</font>
+										</span>
+									</p>									 
+									 <%
+										}
+									 %>
+									 </td>
+								</tr>																								<%										
+									}
+								%>							
 							</tbody>
 						</table>
 					</td>
@@ -139,15 +169,26 @@
 	</div>
 </div>
 
+<%!
+	/* 时间格式化 */
+	public static String formatTime(final Date time) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		if (time == null) {
+			return null;
+		}
+		String result = sdf.format(time);
+		return result;
+	}
 
-<%!private static final Logger logger = Logger
-			.getLogger("com.chongyang.dynamic");%>
-
-
-<script type="text/javascript">
-	//<![CDATA[
-	Sys.Application.initialize();
-	//]]>
-</script>
+%>
 
 <jsp:include page="footer.jsp" />
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.initialize();
+//]]>
+</script>
+</form>
+</body>
+</html>

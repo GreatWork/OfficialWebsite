@@ -23,11 +23,11 @@ body{font:12px/20px Verdana, 'simsun', Geneva, sans-serif; color:#5f5f5f; backgr
 .menu a{ font:bold 14px/2 'Adobe 黑体 Std'; color:#001c43;}
 .menu a:hover{color:orange;}
 .menu .last{background:none; padding-right:0;}ul
-.submenu{ position:absolute; display:none; width:540px; height:35px; padding:11px 0px 6px 20px; background:url(../img/submenu.png) left repeat;_background:url(../img/submenu_6.png) left no-repeat;  z-index:31; left:0px; top:50px;}
-#m_pro .submenu{left:-218px;width:420px; *width:417px; }
-#m_pro .sj{left:278px;}
+.submenu{ position:absolute; display:none; width:560px; height:35px; padding:11px 0px 6px 20px; background:url(../img/submenu.png) left repeat;_background:url(../img/submenu_6.png) left no-repeat;  z-index:31; left:0px; top:50px;}
+#m_pro .submenu{left:-168px;width:350px; *width:347px; }
+#m_pro .sj{left:258px;}
 #m_info .submenu{width:100px; *width:320px; }
-#m_profile .submenu{width:210px; }
+#m_profile .submenu{width:180px; }
 .submenu i{position:absolute;}
 .submenu .sj{width:0; height:0; border-width:0 10px 10px 10px; border-style:solid; border-color: #ffffff #ffffff #001c43 #ffffff; left:50px; top:1px; _font-size:0; _line-height:0;}
 .submenu a{ color:#98a3b5; font:12px/35px simsun; padding:0 16px;}

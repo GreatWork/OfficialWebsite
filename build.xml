@@ -8,10 +8,17 @@
 	<property name="tomcat.home" value="${env.TOMCAT_HOME}"/>
 	<property name="java.home" value="${env.JAVA_HOME}"/>	
 	<property file="build.properties" />
+	<property file="src/config.properties"/>	
 	<property name="project.root" value="." />
 	<property name="src.dir" value="${project.root}/src" />
 	<property name="compile.dir" value="${project.root}/WebRoot/WEB-INF/classes" />
 	<property name="template.dir" value="${project.root}/template" />
+	
+	<!-- 远程服务器配置信息 -->
+	<property name="remote_user" value="root" />
+	<property name="remote_pwd" value="6ee5c319" />
+	<property name="remote_ip" value="218.244.133.28" />
+	<property name="remote_tomcat_home" value="/usr/local/apache-tomcat-7.0.54" />
 
 	<!-- 当前时间、日期 -->
 	<tstamp>
@@ -28,7 +35,7 @@
 	<!-- Java编译CLASSPATH -->
 	<path id="master-classpath">
 		<fileset dir="${project.lib}" />
-		<fileset dir="${project.exlib}" />
+		<!--fileset dir="${project.exlib}" /-->
 	</path>
 
 	<!-- 编译JAVA 文件 -->
@@ -97,4 +104,27 @@
             </fileset>
         </copy>
 	</target>
+	
+	<target name="deploy-remote" depends="build-war">
+		<echo>deploy to:${remote_user}:${remote_pwd}@${remote_ip}:${remote_tomcat_home}/webapps</echo>
+		<echo>deploy ${target}</echo>
+		<scp file=".//build/${project.name}.war" 
+			todir="${remote_user}:${remote_pwd}@${remote_ip}:${remote_tomcat_home}/webapps" 
+			trust="true"/>
+	</target>
+	
+	<target name="dbinit">
+		<echo message="dbinit" />
+		<sql driver="${database.driverClassName}" classpathref="project.class.path" url="${database.url}" userid="${database.username}" password="${database.password}" onerror="continue" encoding="utf-8">
+			<fileset dir="db/mysql">
+				<include name="delete*.sql" />
+			</fileset>			
+			<fileset dir="db/mysql">
+				<include name="create*.sql" />
+			</fileset>			
+			<fileset dir="db/mysql">
+				<include name="insert_*.sql" />
+			</fileset>
+		</sql>
+	</target>		
 </project>
