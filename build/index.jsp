@@ -37,11 +37,9 @@
 	</div -->
 	<div class="banner_box">
 		<ul class="banner">
-			<li><a href="#"><img src="img/banner_1.jpg"></a></li>
-			<li><a href="#"><img src="img/banner_2.jpg"></a></li>
-			<li><a href="#"><img src="img/banner_3.jpg"></a></li>
-			<li><a href="#"><img src="img/banner_4.jpg"></a></li>
-			<li><a href="#"><img src="img/banner_5.jpg"></a></li>
+			<li><a href="#"><img src="img/banner_1.png"></a></li>
+			<li><a href="#"><img src="img/banner_2.png"></a></li>
+			<li><a href="#"><img src="img/banner_3.png"></a></li>
 		</ul>
 		<a href="#" class="a_left"></a> <a href="#" class="a_right"></a>
 	</div>
@@ -63,7 +61,7 @@
 			<%
 				for(NewsInfoDto newsInfo:newsInfos){
 			%>		
-			<li><a target="_blank" href="dynamicdetail.jsp?id=<%=newsInfo.getId()%>">
+			<li><a target="_blank" href="newsdetail.jsp?id=<%=newsInfo.getId()%>&t=<%=java.net.URLEncoder.encode(newsInfo.getTitle(), "UTF-8")%>">
 					<%=newsInfo.getTitle()%> </a> 
 				<span class="date"><%=formatTime(newsInfo.getCreateTime())%></span>
 			</li>
@@ -79,7 +77,7 @@
 			<%
 				for(RecommendInfoDto recommendInfo:recommendInfos){
 			%>		
-			<li><a target="_blank" href="recommenddetail.jsp?id=<%=recommendInfo.getId() %>">
+			<li><a target="_blank" href="recommenddetail.jsp?id=<%=recommendInfo.getId() %>&t=<%=java.net.URLEncoder.encode(recommendInfo.getTitle(), "UTF-8")%>">
 			       <%=recommendInfo.getTitle() %></a>
 			       <span class="date"><%=formatTime(recommendInfo.getCreateTime()) %></span></li>
 			<%}%>							
@@ -88,15 +86,15 @@
 </div>
 <div class="line"></div>
 <div class="wapper clearfix">
-	<img src="img/demo_1.jpg" class="fl mr13" /> 
-	<img src="img/demo_2.jpg" class="fl mr13" /> 
-	<img src="img/demo_3.jpg" class="fl " />
+	<img src="img/bottom_1.png" class="fl mr13" /> 
+	<img src="img/bottom_2.png" class="fl mr13" /> 
+	<img src="img/bottom_3.png" class="fl " />
 </div>
 
 <script type="text/javascript">
        $(function() {
            function scroll() {
-               var z = $('.banner li').size(), w = (z + 1) * 700, i = 0;
+               var z = $('.banner li').size()+1, w = (z + 1) * 700, i = 0;
                $('.banner li').first().clone().appendTo('.banner');
                $('.banner').width(w);
                $('.a_right').click(function() {

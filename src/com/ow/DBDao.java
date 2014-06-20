@@ -96,6 +96,157 @@ public class DBDao {
 
 	/**
 	 * ----------------------------------------- 
+	 * NewsInfoDto操作
+	 * -----------------------------------------
+	 */
+	
+	/**
+	 * 获取NewsInfo表的记录
+	 * @param recId				记录ID	
+	 * @param maxShowPageNum	当前页面最大显示个数
+	 * @return
+	 */
+	public List<NewsInfoDto> getNewsInfoDtos(int id,
+			int maxShowPageNum) {
+
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<NewsInfoDto> newsInfoDtos = null;
+		try {
+
+			stmt = conn
+					.prepareStatement("select id,title,creatTime from NewsInfo where id >= ? limit ?");
+
+			stmt.setInt(1, id);
+			stmt.setInt(2, maxShowPageNum);
+
+			rs = stmt.executeQuery();
+
+			String title = "";
+			Date date=null;
+			int newsId = 0;
+
+			newsInfoDtos = new ArrayList<NewsInfoDto>();
+			
+			while (rs.next()) {
+
+				newsId = rs.getInt(1);
+				title = rs.getString(2);
+				date = rs.getDate(3);
+
+				NewsInfoDto newsInfoDto = new NewsInfoDto();
+				newsInfoDto.setId(newsId);
+				newsInfoDto.setCreateTime(date);
+				newsInfoDto.setTitle(title);
+
+				newsInfoDtos.add(newsInfoDto);
+
+			}
+
+			if (stmt != null)
+				stmt.close();
+			if (rs != null)
+				rs.close();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			logger.debug(e.getMessage());
+		}
+		
+		return newsInfoDtos;
+	}
+	
+	public NewsInfoDto getNewsInfoDto(int id) {
+
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		NewsInfoDto newsInfoDto = null;
+		try {
+
+			stmt = conn
+					.prepareStatement("select author,title,content,creatTime from NewsInfo where id = ? ");
+
+			stmt.setInt(1, id);
+
+			rs = stmt.executeQuery();
+
+			String title = "";
+			Date date=null;
+			String author = "";
+			String infoString="";
+
+			if(rs.next()) {
+
+				newsInfoDto=new NewsInfoDto();
+				
+				author = rs.getString(1);
+				title = rs.getString(2);
+				infoString=rs.getString(3);
+				date = rs.getDate(4);
+
+				newsInfoDto.setAuthor(author);
+				newsInfoDto.setCreateTime(date);
+				newsInfoDto.setTitle(title);
+				newsInfoDto.setContent(infoString);
+
+			}
+
+			if (stmt != null)
+				stmt.close();
+			if (rs != null)
+				rs.close();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			logger.debug(e.getMessage());
+		}
+		
+		return newsInfoDto;
+	}
+	
+	/**
+	 * 获取NewsInfo表的记录总数
+	 * @return
+	 */
+	public int getTotalNewsCount(){
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int count=0;
+		
+		try {
+
+			stmt = conn
+					.prepareStatement("select count(1) from NewsInfo");
+
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+
+				count=rs.getInt(1);
+			}
+
+			if (stmt != null)
+				stmt.close();
+			if (rs != null)
+				rs.close();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			logger.debug(e.getMessage());
+		}
+		
+		return count;
+	}
+	
+	
+	/**
+	 *------------------RecommendInfo表操作----------------------
+	 *----------------------------------------------------
+	 *
 	 * RecommendInfoDto操作
 	 * -----------------------------------------
 	 */
@@ -241,6 +392,10 @@ public class DBDao {
 		
 		return count;
 	}
+	
+	
+	
+	
 	
 	/**
 	 * ----------------------------------------- ProductInfo操作

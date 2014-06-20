@@ -74,7 +74,7 @@
 	dbDao.close();
 %>
 <div class="wapper clearfix">
-	<img src="img/recommend/banner_news.jpg">
+	<img src="img/banner.png">
 </div>
 <div class="wapper clearfix overhide">
 	<div class="subleft">

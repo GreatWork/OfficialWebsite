@@ -70,7 +70,7 @@
 <jsp:include page="header.jsp" />
 
 <div class="wapper clearfix">
-	<img src="img/banner_profile.jpg">
+	<img src="img/banner.png">
 </div>
 <div class="wapper clearfix overhide">
 	<div class="subleft">

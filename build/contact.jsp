@@ -34,7 +34,7 @@
 <jsp:include page="header.jsp" />
 
 <div class="wapper clearfix">
-	<img src="img/banner_about.jpg" />
+	<img src="img/banner.png" />
 </div>
 <div class="wapper clearfix overhide">
 	<div class="subleft">
@@ -54,16 +54,7 @@
 		</div>
 
 		<img src="img/contact/index_map.jpg" /> 
-		<br /> 
-		<br /> 
-		<br /> 
 		
-		<strong>**办事处</strong>
-		<br /> 地址：
-		<br /> 邮编： 
-		<br /> 电话： 
-		<br /> 传真： 
-		<br />
 	</div>
 </div>
 

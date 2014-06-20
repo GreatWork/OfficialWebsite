@@ -23,7 +23,7 @@ body{font:12px/20px Verdana, 'simsun', Geneva, sans-serif; color:#5f5f5f; backgr
 .menu a{ font:bold 14px/2 'Adobe 黑体 Std'; color:#001c43;}
 .menu a:hover{color:orange;}
 .menu .last{background:none; padding-right:0;}ul
-.submenu{ position:absolute; display:none; width:560px; height:35px; padding:11px 0px 6px 20px; background:url(../img/submenu.png) left repeat;_background:url(../img/submenu_6.png) left no-repeat;  z-index:31; left:0px; top:50px;}
+.submenu{ position:absolute; display:none; width:355px; height:35px; padding:11px 0px 6px 20px; background:url(../img/submenu.png) left repeat;_background:url(../img/submenu_6.png) left no-repeat;  z-index:31; left:0px; top:50px;}
 #m_pro .submenu{left:-168px;width:350px; *width:347px; }
 #m_pro .sj{left:258px;}
 #m_info .submenu{width:100px; *width:320px; }
@@ -61,7 +61,7 @@ body{font:12px/20px Verdana, 'simsun', Geneva, sans-serif; color:#5f5f5f; backgr
 .news_ul .date{float:right;}
 .news_ul a{float:left; width:330px; overflow:hidden;}
 
-.mr13{margin-right:13px;}
+.mr13{margin-right:36px;}
 .point_box{width:302px; }
 
 

@@ -33,11 +33,11 @@
 <jsp:include page="header.jsp" />
 
 <div class="wapper clearfix">
-	<img src="img/recommend/banner_news.jpg">
+	<img src="img/banner.png">
 </div>
 <div class="wapper clearfix overhide">
 	<div class="subleft">
-		<a id="menu01" class="on" href="recommend2.jsp">安洪推荐</a>
+		<a id="menu01" class="on" href="recommend.jsp">行业推荐</a>
 	</div>
 	<div class="rightcontent wordbox" style="text-indent: 2em;">
 		<table style="border-collapse: collapse;"
@@ -51,7 +51,7 @@
 									<td><strong
 										style="color: rgb(15, 54, 83); font-weight: bolder;">
 
-											<%=recommendInfoDto.getTitle()%></strong>&nbsp;<%=recommendInfoDto.getDate()%></td>
+											<%=recommendInfoDto.getTitle()%></strong>&nbsp;&nbsp;<%=recommendInfoDto.getDate()%></td>
 								</tr>
 								<tr>
 									<td style="color: rgb(123, 123, 123);"><BR>

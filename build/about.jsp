@@ -57,7 +57,7 @@ td p {
 <jsp:include page="header.jsp" />
 
 <div class="wapper clearfix">
-	<img src="img/banner_about.jpg" />
+	<img src="img/banner.png" />
 </div>
 
 <%
@@ -68,10 +68,6 @@ td p {
 	String companyPhilosophy=dbDao.getConfigInfoByName("公司理念");
 	//投资经理
 	List<InvestManagerDto> investManagers=dbDao.getInvestManagers();
-	//公司荣誉
-	String companyGlories=dbDao.getConfigInfoByName("公司荣誉");
-	//招聘信息
-	List<RecruitInfoDto> recruitInfos=dbDao.getVaildRecruitInfoDtos();
 	dbDao.close();
 %>
 
@@ -81,8 +77,6 @@ td p {
 		<a href="javascript:void(0);" onclick="ClickLeftMenu('2');" id="menu02">安洪理念</a> 
 		<a href="javascript:void(0);" onclick="ClickLeftMenu('3');" id="menu03">投资经理</a>
 		<a href="javascript:void(0);" onclick="ClickLeftMenu('4');"	id="menu04">投研团队</a> 
-		<a href="javascript:void(0);" onclick="ClickLeftMenu('5');" id="menu05">公司荣誉</a> 
-		<a href="javascript:void(0);" onclick="ClickLeftMenu('6');" id="menu06">诚聘英才</a>
 	</div>
 	<div id="page01" class="rightcontent wordbox" style="display: none;">
 		<p>
@@ -164,86 +158,6 @@ td p {
 			}
 			%>	
 		</table>
-	</div>
-	<div id="page05" class="rightcontent wordbox" style="display: none;">
-		<br />
-		★&nbsp;&nbsp;2014年4月上海安洪投资管理有限公司。
-		<br />
-		<br /> 
-	</div>
-	<div id="page06" class="rightcontent wordbox" style="display: none;">
-		上海安洪投资管理有限公司重视专业人才的培养和引进，将以有竞争力的薪酬水平，清晰长远的职业发展规划，诚邀英才加入！
-		<br /> 
-		<br />
-		<table id="ctl00_cpContent_DataList1" cellspacing="0" border="0"
-			style="border-collapse: collapse;">
-			<tr>
-				<td><strong style="color: #0A3756"> 
-					战略研究部 助理分析师（实习生）(若干) &nbsp;&nbsp;&nbsp;&nbsp;
-				    </strong>
-				    <br /> 
-				    <strong>岗位职责：</strong>
-					<div>
-						1、协助进行中国和全球宏观经济研究；<br /> 
-						2、协助进行A股投资策略研究；<br /> 
-						3、协助完成银行、地产行业研究；<br />
-						4、协助完成其他管理层指定的战略研究课题。
-					</div> 
-					<strong>岗位要求：</strong>
-					<div>
-						1、硕士研究生及以上学历；<br /> 
-						2、具备突出的学习和钻研能力、严谨的逻辑分析能力和高效的人际沟通能力；<br />
-						3、诚实、敬业，具备工作主动性，具有独立思考和团队合作精神；<br /> 
-						4、具备较强的英语综合使用能力；<br />
-						5、具备较强的办公软件如Excel、Word、Powerpoint使用技能；<br />
-						6、具备CFA、CPA等相关资格证书者优先考虑。
-					</div> 
-					<br />
-				</td>
-			</tr>
-			<% 
-			      for(RecruitInfoDto recruitInfo:recruitInfos){
-			    	  String recruitTitle=recruitInfo.getDepartment() +" "+recruitInfo.getPosition()
-			    			  +" ("+recruitInfo.getPositionType() +") ("+recruitInfo.getPositionNumber()+")";
-			    			  
-			%>
-			<tr>
-				<td><strong style="color: #0A3756"> 
-				    <%=recruitTitle %> &nbsp;&nbsp;&nbsp;&nbsp;
-				    </strong>
-				    <br /> 
-				    <strong>岗位职责：</strong>
-					<div>
-						 <%
-							String[] statements = recruitInfo.getPositionStatement().split("\r\n");
-							for (String statement:statements){
-						 %>
-						 <%=statement %>
-						 <br /> 
-						 <%
-							}
-						 %>
-					</div> 
-					<strong>岗位要求：</strong>
-					<div>
-						 <%
-							String[] requirements = recruitInfo.getPositionRequirement().split("\r\n");
-							for (String requirement:requirements){
-						 %>
-						 <%=requirement %>
-						 <br /> 
-						 <%
-							}
-						 %>
-					</div> 
-					<br />
-				</td>
-			</tr>
-			<% 		}%>
-		</table>
-		实习要求<br /> 暑期期间每周至少4天实习，实习地点：，公司提供实习补贴。<br /> <br />
-		联系方式<br /> 请2015年应届毕业生将简历发送到***，如有任何问题，欢迎致电021-********，联系人：***。<br />
-		<font color="red">请注意每人只能申请一个职位。</font> <br />
 	</div>
 </div>
 

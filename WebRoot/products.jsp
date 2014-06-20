@@ -108,7 +108,7 @@ function ClickAccountManagement() {
 %>
 
 <div class="wapper clearfix">
-	<img src="img/product/banner_product.jpg">
+	<img src="img/banner.png">
 </div>
 <div class="wapper clearfix overhide">
 	<dl class="subleft">

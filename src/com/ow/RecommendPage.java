@@ -18,12 +18,12 @@ public class RecommendPage {
 	/**
 	 * 每个页面显示的记录条数
 	 */
-	public static final int PageRecord=10;
+	public static final int PageRecord=3;
 	
 	/**
 	 * 页面下最多显示的索引数
 	 */
-	public static final int MaxShowPageNum=10;
+	public static final int MaxShowPageNum=3;
 	
 	
 	public int getStartPageNum(){

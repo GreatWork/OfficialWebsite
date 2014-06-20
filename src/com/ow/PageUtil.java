@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class PageUtil {
 
+	/**
+	 * 返回段落，段落用<P>...</P>标识
+	 * @param article	文章内容
+	 * @return			段落
+	 */
 	public static String[] getParagraphs(String article ){
 		
 		String[] ret=null;
@@ -25,6 +30,13 @@ public class PageUtil {
 			endPIndexs.add(t);
 			pToIndex=t+1;
 		}
+		
+		//如果没有用<P></P>分隔则返回整个段落
+		if(startPIndexs.size()==0 || endPIndexs.size()==0){
+			
+			return new String[]{article};
+		}
+		
 		
 		ArrayList<String> paragraphs=new ArrayList<String>();
 		
