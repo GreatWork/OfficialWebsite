@@ -34,7 +34,7 @@
 <jsp:include page="header.jsp" />
 
 <div class="wapper clearfix">
-	<img src="img/banner.png" />
+	<img src="img/banner_1.png" />
 </div>
 <div class="wapper clearfix overhide">
 	<div class="subleft">

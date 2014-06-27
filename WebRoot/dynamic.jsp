@@ -6,7 +6,6 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="com.ow.DBDao"%>
 <%@ page import="com.ow.dto.*"%>
-<%@ page import="com.ow.*"%>
 
 <%
 	String pageTitle = "安洪动态";
@@ -33,127 +32,31 @@
                 ClickLeftMenu('1');
             }
         });
-       
-    </script>
-    
-    <script type="text/javascript">
-    
-    function menuClick(id){
-    	
-    	if(id=='1'){
-    		
-    	}
-    	
-    	if(id=='2'){
-    		
-    		
-    	}
-    }
-    
     </script>
 
 </head>
 
 <jsp:include page="header.jsp" />
 
-
-<%!RecommendPage pageInfo = new RecommendPage();%>
-
 <%
+	TableDto newsInfoTable=new TableDto();
+	TableDto recommendTable=new TableDto();
 	String curPage = request.getParameter("page");
 	if (curPage != null && !curPage.equals("")) {
-
-		int num = Integer.parseInt(curPage);
-		if (-1 == num) {//上一页
-
-	if (pageInfo.getCurPageNum() > 1) {
-
-		if(pageInfo.getStartPageNum()==pageInfo.getCurPageNum()){
-	
-	pageInfo.setStartPageNum(pageInfo.getStartPageNum()-1);
-	pageInfo.setEndPageNum(pageInfo.getEndPageNum()-1);
-		}
-		
-		pageInfo.setCurPageNum(pageInfo.getCurPageNum() - 1);
-		
-	}
-
-		} else if (0 == num) {//下一页
-
-	if (pageInfo.getCurPageNum() < pageInfo.getPageCount()) {
-
-		if(pageInfo.getEndPageNum()==pageInfo.getCurPageNum()){
-	
-		pageInfo.setEndPageNum(pageInfo.getEndPageNum()+1);
-		pageInfo.setStartPageNum(pageInfo.getStartPageNum()+1);
-		}
-		
-		pageInfo.setCurPageNum(pageInfo.getCurPageNum() + 1);
-	}
-
-		} else {
-
-		pageInfo.setCurPageNum(num);
-		}
-		
-	}
-%>
-
-<%!RecommendPage pageInfoNews = new RecommendPage();%>
-<%
-String curPageNews = request.getParameter("page_news");
-if (curPageNews != null && !curPageNews.equals("")) {
-
-	int num = Integer.parseInt(curPageNews);
-	if (-1 == num) {//上一页
-
-if (pageInfoNews.getCurPageNum() > 1) {
-
-	if(pageInfoNews.getStartPageNum()==pageInfoNews.getCurPageNum()){
-
-		pageInfoNews.setStartPageNum(pageInfoNews.getStartPageNum()-1);
-		pageInfoNews.setEndPageNum(pageInfoNews.getEndPageNum()-1);
-	}
-	
-	pageInfoNews.setCurPageNum(pageInfoNews.getCurPageNum() - 1);
-	
-}
-
-	} else if (0 == num) {//下一页
-
-if (pageInfoNews.getCurPageNum() < pageInfoNews.getPageCount()) {
-
-	if(pageInfoNews.getEndPageNum()==pageInfoNews.getCurPageNum()){
-
-		pageInfoNews.setEndPageNum(pageInfoNews.getEndPageNum()+1);
-		pageInfoNews.setStartPageNum(pageInfoNews.getStartPageNum()+1);
-	}
-	
-	pageInfoNews.setCurPageNum(pageInfoNews.getCurPageNum() + 1);
-}
-
+		String[] curPages=curPage.split("A");
+		newsInfoTable.setCurPageNum(Integer.parseInt(curPages[0]));
+		recommendTable.setCurPageNum(Integer.parseInt(curPages[1]));
 	} else {
-
-		pageInfoNews.setCurPageNum(num);
+		newsInfoTable.setCurPageNum(1);
+		recommendTable.setCurPageNum(1);
 	}
-	
-}
-%>
-
-<%
 	DBDao dbDao = new DBDao();
 	dbDao.init();
-	
-	int recId=(pageInfo.getCurPageNum() - 1)*pageInfo.MaxShowPageNum + 1;
-	int maxShowPageNum=pageInfo.MaxShowPageNum;
-	List<RecommendInfo2Dto> recommendInfoDtos=dbDao.getRecommendInfoDtos(recId, maxShowPageNum);
-	pageInfo.setTotalRecordCount(dbDao.getTotalRecommendCount());	
-	
-	int newsId=(pageInfoNews.getCurPageNum() - 1)*pageInfoNews.MaxShowPageNum + 1;
-	int maxShowPageNumNews=pageInfoNews.MaxShowPageNum;
-	List<NewsInfoDto> newsInfoDtos=dbDao.getNewsInfoDtos(newsId, maxShowPageNumNews);
-	pageInfoNews.setTotalRecordCount(dbDao.getTotalNewsCount());		
-	
+	newsInfoTable.setTotalRecordCount(dbDao.getNewsInfoTotalNum());
+	recommendTable.setTotalRecordCount(dbDao.getRecommendInfoTotalNum());
+	//获得当前页数据
+	List<NewsInfoDto> newsInfos=dbDao.getNewsInfoByPage(newsInfoTable.getCurPageNum(), TableDto.MAX_RECORD_PER_PAGE);
+	List<RecommendInfoDto> recommendInfos=dbDao.getRecommendInfoByPage(recommendTable.getCurPageNum(), TableDto.MAX_RECORD_PER_PAGE);
 	dbDao.close();
 %>
 
@@ -165,7 +68,7 @@ if (pageInfoNews.getCurPageNum() < pageInfoNews.getPageCount()) {
 </script>
 
 <div class="wapper clearfix">
-	<img src="img/banner.png">
+	<img src="img/banner_4.png" />
 </div>
 <div class="wapper clearfix overhide">
 	<div class="subleft">
@@ -175,33 +78,27 @@ if (pageInfoNews.getCurPageNum() < pageInfoNews.getPageCount()) {
 			id="menu02" class="">行业推荐</a>
 	</div>
 	<div id="page01" class="rightcontent wordbox" style="display: block;">
-	<div id="ctl00_cpContent_UpdatePanel1">
-
+		<div id="ctl00_cpContent_UpdatePanel1">
 			<table width="625" border="0" cellspacing="0" cellpadding="0">
-
-				<%
-					for(NewsInfoDto newsInfoDto:newsInfoDtos){
-				%>
-
-				<tr>
-					<td>
-						<tr>
-							<td width="505"><a
-								href="newsdetail.jsp?id=<%=newsInfoDto.getId()%>&t=<%=java.net.URLEncoder.encode(newsInfoDto.getTitle(), "UTF-8")%>"><%=newsInfoDto.getTitle()%></a></td>
-							<td width="120" align="right" style="font-family: Tahoma;"><%=newsInfoDto.getCreateTime()%></td>
-						</tr>
-						<tr>
-							<td colspan="2"><img src="img/recommend/lineB.gif"
-								height="1"></td>
-						</tr>
-					</td>
-				</tr>
-
-				<%
-					}
-				%>
-				</td>
-				<tr>
+			</table>
+			<table id="ctl00_cpContent_DataList1" cellspacing="0" border="0"
+				style="border-collapse: collapse;">
+				<tbody>
+					<%for(NewsInfoDto newsInfo:newsInfos){%>		
+					<tr>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="505"><a href="dynamicdetail.jsp?id=<%=newsInfo.getId() %>">
+								<%=newsInfo.getTitle() %></a></td>
+						<td width="120" align="right" style="font-family: Tahoma;">
+							<%=formatTime(newsInfo.getCreateTime()) %></td>
+					</tr>
+					<tr>
+						<td colspan="2"><img src="img/lineB.gif" height="1"></td>
+					</tr>
+					<%}%>		
+				</tbody>
 			</table>
 
 			<div id="ctl00_cpContent_AspNetPager1" showpageindexbox="Never"
@@ -210,136 +107,159 @@ if (pageInfoNews.getCurPageNum() < pageInfoNews.getPageCount()) {
 					<tbody>
 						<tr>
 							<td valign="bottom" align="left" nowrap="true"
-								style="width: 40%;"><font color="#0C3855"><%=pageInfoNews.getTotalRecordCount()%></font>条/<font
-								color="#0C3855"><%=pageInfoNews.getPageCount()%></font>页</td>
-							<td valign="bottom" style="width: 60%;"><span
-								style="margin-right: 5px;"> <a
-									href="dynamic.jsp?page_news=-1" style="margin-right: 5px;">&lt;上一页</a>
-									<%
+								style="width: 40%;">
+								<font color="#0C3855"><%=newsInfoTable.getTotalRecordCount()%></font>条/
+								<font color="#0C3855"><%=newsInfoTable.getPageCount()%></font>页
+							</td>
+							<td valign="bottom" align="notset" nowrap="true" class=""
+								style="width: 60%;">
+								<a href="dynamic.jsp?page=1A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;">&lt;&lt;</a>
+								<% 
+									if(newsInfoTable.getCurPageNum()>1){
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum()-1%>A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;">&lt;</a>
+								<%								
+									}else{
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum()%>A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;">&lt;</a>
+								<%																		
+									}
+								
+									int newsInfoCardinalNum=newsInfoTable.getCurPageNum()/TableDto.MAX_SHOW_PAGE_NUM;	//第几个10
+							    	int newsInfoBeginPageNum=newsInfoCardinalNum*TableDto.MAX_SHOW_PAGE_NUM;								
 									
-										if(pageInfoNews.getEndPageNum()==-1){//第一次加载
-											
-											if(pageInfoNews.getPageCount()<pageInfoNews.MaxShowPageNum){
-												
-												pageInfoNews.setEndPageNum(pageInfoNews.getPageCount());
-												
-											}else{
-												
-												pageInfoNews.setEndPageNum(pageInfoNews.MaxShowPageNum);
-											}
-										}
-									
-										int iFlagNews = pageInfoNews.getStartPageNum();
-										while (iFlagNews <= pageInfoNews.getEndPageNum()) {
-											
-											if(iFlagNews==pageInfoNews.getCurPageNum()){
-											
-									%> <a
-									href="dynamic.jsp?page_news=<%=iFlagNews%>"
-									style="margin-right: 5px;text-decoration:underline;"><%=iFlagNews%></a>
-									<%
-											}else{
-																		
-									%>
-									<a
-									href="dynamic.jsp?page_news=<%=iFlagNews%>"
-									style="margin-right: 5px;"><%=iFlagNews%></a>
+							    	if(newsInfoCardinalNum>0){										
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoBeginPageNum %>A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;">...</a>
+								<%	
+									}
 
-									<%
-											}
-											iFlagNews++;
-										}
-									%> 
-									<span style="margin-right: 5px;"><a
-										href="dynamic.jsp?page_news=0" style="margin-right: 5px;">下一页&gt;</a></td>
+								    for(int i=1;i<=TableDto.MAX_SHOW_PAGE_NUM && newsInfoBeginPageNum+i<=newsInfoTable.getPageCount();i++){	
+								    	int nowNewsInfoBeginPageNum=newsInfoBeginPageNum+i;
+								    	if(nowNewsInfoBeginPageNum == newsInfoTable.getCurPageNum()){
+								%>
+								<a href="dynamic.jsp?page=<%=nowNewsInfoBeginPageNum %>A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;text-decoration:underline;"><%=nowNewsInfoBeginPageNum %></a>
+								<%  								    		
+								    	}else{
+								%>
+								<a href="dynamic.jsp?page=<%=nowNewsInfoBeginPageNum %>A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;"><%=nowNewsInfoBeginPageNum %></a>
+								<%  								    		
+								    	}
+									}
+								    
+							    	if(newsInfoBeginPageNum+TableDto.MAX_SHOW_PAGE_NUM<newsInfoTable.getPageCount()){										
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoBeginPageNum+TableDto.MAX_SHOW_PAGE_NUM %>A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;">...</a>
+								<%	
+									}
+							    	if(newsInfoTable.getCurPageNum()<newsInfoTable.getPageCount()){
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum()+1 %>A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;">&gt;</a>
+								<%
+							    	}else{
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;">&gt;</a>
+								<%							    		
+							    	}
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getPageCount() %>A<%=recommendTable.getCurPageNum() %>" style="margin-right: 5px;">&gt;&gt;</a>																
+							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			<!-- AspNetPager V6.0.0 for VS2005 End -->
+
+
 
 		</div>
 	</div>
-	
-	
-	<!--  行业推荐     -->
-	<div id="page02" class="rightcontent wordbox" style="display: block;">
-	<div id="ctl00_cpContent_UpdatePanel1">
+	<div id="page02" class="rightcontent wordbox" style="display: none;">
+		<div id="ctl00_cpContent_UpdatePanel2">
 
 			<table width="625" border="0" cellspacing="0" cellpadding="0">
-
-				<%
-					for(RecommendInfo2Dto recommendInfoDto:recommendInfoDtos){
-				%>
-
-				<tr>
-					<td>
-						<tr>
-							<td width="505"><a
-								href="recommenddetail.jsp?id=<%=recommendInfoDto.getId()%>&t=<%=java.net.URLEncoder.encode(recommendInfoDto.getTitle(), "UTF-8")%>"><%=recommendInfoDto.getTitle()%></a></td>
-							<td width="120" align="right" style="font-family: Tahoma;"><%=recommendInfoDto.getDate()%></td>
-						</tr>
-						<tr>
-							<td colspan="2"><img src="img/recommend/lineB.gif"
-								height="1"></td>
-						</tr>
-					</td>
-				</tr>
-
-				<%
-					}
-				%>
-				</td>
-				<tr>
+			</table>
+			<table id="ctl00_cpContent_DataList2" cellspacing="0" border="0"
+				style="border-collapse: collapse;">
+				<tbody>
+					<%for(RecommendInfoDto recommendInfo:recommendInfos){%>		
+					<tr>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="505"><a href="dynamicdetail.jsp?id=<%=recommendInfo.getId() %>&k=2">
+								<%=recommendInfo.getTitle() %></a>
+						</td>
+						<td width="120" align="right" style="font-family: Tahoma;">
+							<%=formatTime(recommendInfo.getCreateTime()) %></td>
+					</tr>
+					<tr>
+						<td colspan="2"><img src="img/lineB.gif" height="1"></td>
+					</tr>
+					<%}%>		
+				</tbody>
 			</table>
 
-			<div id="ctl00_cpContent_AspNetPager1" showpageindexbox="Never"
+			<div id="ctl00_cpContent_AspNetPager2" showpageindexbox="Never"
 				pagingbuttonclass="PageFontA">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tbody>
 						<tr>
 							<td valign="bottom" align="left" nowrap="true"
-								style="width: 40%;"><font color="#0C3855"><%=pageInfo.getTotalRecordCount()%></font>条/<font
-								color="#0C3855"><%=pageInfo.getPageCount()%></font>页</td>
-							<td valign="bottom" style="width: 60%;"><span
-								style="margin-right: 5px;"> <a
-									href="dynamic.jsp?page=-1" style="margin-right: 5px;">&lt;上一页</a>
-									<%
+								style="width: 40%;">
+								<font color="#0C3855"><%=recommendTable.getTotalRecordCount()%></font>条/
+								<font color="#0C3855"><%=recommendTable.getPageCount()%></font>页
+							</td>
+							<td valign="bottom" align="notset" nowrap="true" class=""
+								style="width: 60%;">
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A1&k=2" style="margin-right: 5px;">&lt;&lt;</a>
+								<% 
+									if(recommendTable.getCurPageNum()>1){
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum()%>A<%=recommendTable.getCurPageNum()-1 %>&k=2" style="margin-right: 5px;">&lt;</a>
+								<%
+									}else{
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum()%>A<%=recommendTable.getCurPageNum() %>&k=2" style="margin-right: 5px;">&lt;</a>
+								<%										
+									}
+									int recommendInfoCardinalNum=recommendTable.getCurPageNum()/TableDto.MAX_SHOW_PAGE_NUM;	//第几个10
+							    	int recommendInfoBeginPageNum=recommendInfoCardinalNum*TableDto.MAX_SHOW_PAGE_NUM;								
 									
-										if(pageInfo.getEndPageNum()==-1){//第一次加载
-											
-											if(pageInfo.getPageCount()<pageInfo.MaxShowPageNum){
-												
-												pageInfo.setEndPageNum(pageInfo.getPageCount());
-												
-											}else{
-												
-												pageInfo.setEndPageNum(pageInfo.MaxShowPageNum);
-											}
-										}
-									
-										int iFlag = pageInfo.getStartPageNum();
-										while (iFlag <= pageInfo.getEndPageNum()) {
-											
-											if(iFlag==pageInfo.getCurPageNum()){
-											
-									%> <a
-									href="dynamic.jsp?page=<%=iFlag%>"
-									style="margin-right: 5px;text-decoration:underline;"><%=iFlag%></a>
-									<%
-											}else{
-																		
-									%>
-									<a
-									href="dynamic.jsp?page=<%=iFlag%>"
-									style="margin-right: 5px;"><%=iFlag%></a>
+							    	if(recommendInfoCardinalNum>0){										
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=recommendInfoBeginPageNum %>&k=2" style="margin-right: 5px;">...</a>
+								<%	}
 
-									<%
-											}
-											iFlag++;
-										}
-									%> 
-									<span style="margin-right: 5px;"><a
-										href="dynamic.jsp?page=0" style="margin-right: 5px;">下一页&gt;</a></td>
+								    for(int i=1;i<=TableDto.MAX_SHOW_PAGE_NUM && recommendInfoBeginPageNum+i<=recommendTable.getPageCount();i++){
+								    	int nowrecommendInfoPageNum=recommendInfoBeginPageNum+i;
+								    	if(nowrecommendInfoPageNum == recommendTable.getCurPageNum()){
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=nowrecommendInfoPageNum %>&k=2" style="margin-right: 5px;text-decoration:underline;"><%=nowrecommendInfoPageNum %></a>
+								<%  								    										    		
+								    	}else{
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=nowrecommendInfoPageNum %>&k=2" style="margin-right: 5px;"><%=nowrecommendInfoPageNum %></a>
+								<%  								    		
+								    	}
+									}
+								    
+							    	if(recommendInfoBeginPageNum+TableDto.MAX_SHOW_PAGE_NUM<newsInfoTable.getPageCount()){										
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=recommendInfoBeginPageNum+TableDto.MAX_SHOW_PAGE_NUM %>&k=2" style="margin-right: 5px;">...</a>
+								<%	}
+							    	if(recommendTable.getCurPageNum()<recommendTable.getPageCount()){
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=recommendTable.getCurPageNum()-1 %>&k=2" style="margin-right: 5px;">&gt;</a>
+								<%
+							    	}else{
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=recommendTable.getCurPageNum() %>&k=2" style="margin-right: 5px;">&gt;</a>
+								<%							    		
+							    	}
+								%>
+								<a href="dynamic.jsp?page=<%=newsInfoTable.getCurPageNum() %>A<%=recommendTable.getPageCount() %>&k=2" style="margin-right: 5px;">&gt;&gt;</a>
+							</td>						
 						</tr>
 					</tbody>
 				</table>
@@ -347,7 +267,6 @@ if (pageInfoNews.getCurPageNum() < pageInfoNews.getPageCount()) {
 
 		</div>
 	</div>
-	
 </div>
 
 

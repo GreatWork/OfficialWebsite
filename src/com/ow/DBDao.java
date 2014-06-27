@@ -1,9 +1,5 @@
 package com.ow;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
@@ -21,10 +16,8 @@ import com.ow.dto.InvestManagerDto;
 import com.ow.dto.NewsInfoDto;
 import com.ow.dto.ProductInfoDto;
 import com.ow.dto.ProductManagerDto;
-import com.ow.dto.RecommendInfo2Dto;
 import com.ow.dto.RecommendInfoDto;
 import com.ow.dto.RecruitInfoDto;
-import com.ow.dto.ViewPointDto;
 
 public class DBDao {
 
@@ -240,162 +233,7 @@ public class DBDao {
 		}
 		
 		return count;
-	}
-	
-	
-	/**
-	 *------------------RecommendInfo表操作----------------------
-	 *----------------------------------------------------
-	 *
-	 * RecommendInfoDto操作
-	 * -----------------------------------------
-	 */
-	
-	/**
-	 * 获取recommendinfo表的记录
-	 * @param recId				记录ID	
-	 * @param maxShowPageNum	当前页面最大显示个数
-	 * @return
-	 */
-	public List<RecommendInfo2Dto> getRecommendInfoDtos(int recId,
-			int maxShowPageNum) {
-
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		List<RecommendInfo2Dto> recommendInfoDtos = null;
-		try {
-
-			stmt = conn
-					.prepareStatement("select recId,recTitle,recTime from RecommendInfo where recId >= ? limit ?");
-
-			stmt.setInt(1, recId);
-			stmt.setInt(2, maxShowPageNum);
-
-			rs = stmt.executeQuery();
-
-			String title = "";
-			String dateString = "";
-			String id = "";
-
-			recommendInfoDtos = new ArrayList<RecommendInfo2Dto>();
-			
-			while (rs.next()) {
-
-				id = rs.getInt(1) + "";
-				title = rs.getString(2);
-				dateString = rs.getDate(3).toString();
-
-				RecommendInfo2Dto recommendInfoDto = new RecommendInfo2Dto();
-				recommendInfoDto.setId(id);
-				recommendInfoDto.setDate(dateString);
-				recommendInfoDto.setTitle(title);
-
-				recommendInfoDtos.add(recommendInfoDto);
-
-			}
-
-			if (stmt != null)
-				stmt.close();
-			if (rs != null)
-				rs.close();
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			
-			logger.debug(e.getMessage());
-		}
-		
-		return recommendInfoDtos;
-	}
-	
-	public RecommendInfo2Dto getRecommendInfoDto(int recId) {
-
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		RecommendInfo2Dto recommendInfoDto = null;
-		try {
-
-			stmt = conn
-					.prepareStatement("select recAuthor,recTitle,recInfo,recTime from RecommendInfo where recId = ? ");
-
-			stmt.setInt(1, recId);
-
-			rs = stmt.executeQuery();
-
-			String title = "";
-			String dateString = "";
-			String author = "";
-			String infoString="";
-
-			if(rs.next()) {
-
-				recommendInfoDto=new RecommendInfo2Dto();
-				
-				author = rs.getString(1);
-				title = rs.getString(2);
-				infoString=rs.getString(3);
-				dateString = rs.getDate(4).toString();
-
-				recommendInfoDto.setAuthor(author);
-				recommendInfoDto.setDate(dateString);
-				recommendInfoDto.setTitle(title);
-				recommendInfoDto.setInfo(infoString);
-
-			}
-
-			if (stmt != null)
-				stmt.close();
-			if (rs != null)
-				rs.close();
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			
-			logger.debug(e.getMessage());
-		}
-		
-		return recommendInfoDto;
-	}
-	
-	/**
-	 * 获取RecommendInfo表的记录总数
-	 * @return
-	 */
-	public int getTotalRecommendCount(){
-		
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		int count=0;
-		
-		try {
-
-			stmt = conn
-					.prepareStatement("select count(1) from RecommendInfo");
-
-			rs = stmt.executeQuery();
-
-			if (rs.next()) {
-
-				count=rs.getInt(1);
-			}
-
-			if (stmt != null)
-				stmt.close();
-			if (rs != null)
-				rs.close();
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			
-			logger.debug(e.getMessage());
-		}
-		
-		return count;
-	}
-	
-	
-	
-	
+	}	
 	
 	/**
 	 * ----------------------------------------- ProductInfo操作
@@ -715,107 +553,7 @@ public class DBDao {
 		return newsInfo;
 	}
 
-	/**
-	 * ----------------------------------------- ViewPoint操作
-	 * -----------------------------------------
-	 */
-	public int getViewPointTotalNum() {
-		logger.debug("DBDao:: getViewPointTotalNum -----------begin ");
-		int totalNum = 0;
-		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select count(1) from ViewPoint");
-			if (rs.next()) {
-				totalNum = rs.getInt(1);
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-			logger.error(e, e);
-		}
-		logger.debug("DBDao:: getViewPointTotalNum totalNum=" + totalNum
-				+ "-----------end ");
-		return totalNum;
-	}
 
-	public List<ViewPointDto> getViewPointByPage(int pageIndex, int pageSize) {
-		logger.debug("DBDao:: getViewPointByPage -----------begin ");
-		logger.debug("pageIndex=" + pageIndex + ",pageSize=" + pageSize);
-		List<ViewPointDto> viewPoints = new ArrayList<ViewPointDto>();
-		try {
-			// 本页起始行
-			int firstIndex = (pageIndex - 1) * pageSize;
-			PreparedStatement pstmt = conn
-					.prepareStatement("select id,title,creatTime from ViewPoint order by creatTime desc limit ?,?");
-			pstmt.setInt(1, firstIndex);
-			pstmt.setInt(2, pageSize);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				ViewPointDto viewPoint = new ViewPointDto();
-				viewPoint.setId(rs.getInt(1));
-				viewPoint.setTitle(rs.getString(2));
-				viewPoint.setCreateTime(rs.getDate(3));
-
-				viewPoints.add(viewPoint);
-			}
-			rs.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			logger.error(e, e);
-		}
-		logger.debug("DBDao:: getViewPointByPage -----------end ");
-		return viewPoints;
-	}
-
-	public List<ViewPointDto> getTheNewestFiveViewPoint() {
-		logger.debug("DBDao:: getTheNewestFiveViewPoint -----------begin ");
-		List<ViewPointDto> viewPoints = new ArrayList<ViewPointDto>();
-		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("select id,content,creatTime from ViewPoint order by creatTime desc limit 5");
-
-			while (rs.next()) {
-				ViewPointDto viewPoint = new ViewPointDto();
-				viewPoint.setId(rs.getInt(1));
-				viewPoint.setContent(rs.getString(2));
-				viewPoint.setCreateTime(rs.getDate(3));
-
-				viewPoints.add(viewPoint);
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-			logger.error(e, e);
-		}
-		logger.debug("DBDao:: getTheNewestFiveViewPoint -----------end ");
-		return viewPoints;
-
-	}
-
-	public ViewPointDto getViewPointById(int id) {
-		logger.debug("DBDao:: getViewPointById -----------begin ");
-		logger.debug("id = " + id);
-		ViewPointDto viewPoint = new ViewPointDto();
-		try {
-			PreparedStatement pstmt = conn
-					.prepareStatement("select author,title,content,creatTime from ViewPoint where id = ?");
-			pstmt.setInt(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				viewPoint.setAuthor(rs.getString(1));
-				viewPoint.setTitle(rs.getString(2));
-				viewPoint.setContent(rs.getString(3));
-				viewPoint.setCreateTime(rs.getDate(4));
-			}
-			rs.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			logger.error(e, e);
-		}
-		logger.debug("DBDao:: getViewPointById -----------end ");
-		return viewPoint;
-	}
 	
 	/**-----------------------------------------
 	 * RecommendInfo操作
@@ -845,7 +583,7 @@ public class DBDao {
 		List<RecommendInfoDto> recommendInfos=new ArrayList<RecommendInfoDto>();
 		try {
 			int firstIndex=(pageIndex-1)*pageSize;
-			PreparedStatement pstmt = conn.prepareStatement("select id,title,creatTime from RecommendInfo order by creatTime desc limit ?,?");	
+			PreparedStatement pstmt = conn.prepareStatement("select recId,recTitle,recTime from RecommendInfo order by recTime desc limit ?,?");	
 			
 			pstmt.setInt(1, firstIndex);
 			pstmt.setInt(2, pageSize);
@@ -900,13 +638,14 @@ public class DBDao {
 		logger.debug("id = "+id);
 		RecommendInfoDto recommendInfo=new RecommendInfoDto();
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("select title,content,creatTime from RecommendInfo where id = ?");				
+			PreparedStatement pstmt = conn.prepareStatement("select recAuthor,recTitle,recInfo,recTime from RecommendInfo where recId = ?");				
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()){
-				recommendInfo.setTitle(rs.getString(1));
-				recommendInfo.setContent(rs.getString(2));
-				recommendInfo.setCreateTime(rs.getDate(3));				
+				recommendInfo.setAuthor(rs.getString(1));
+				recommendInfo.setTitle(rs.getString(2));
+				recommendInfo.setContent(rs.getString(3));
+				recommendInfo.setCreateTime(rs.getDate(4));				
 			}			
 			rs.close();
 			pstmt.close();

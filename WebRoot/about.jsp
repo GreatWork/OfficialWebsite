@@ -57,7 +57,7 @@ td p {
 <jsp:include page="header.jsp" />
 
 <div class="wapper clearfix">
-	<img src="img/banner.png" />
+	<img src="img/banner_2.png" />
 </div>
 
 <%
