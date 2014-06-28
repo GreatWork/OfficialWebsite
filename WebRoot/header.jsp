@@ -13,7 +13,7 @@
 
 
 		<div class="wapper header">
-			<a href="index.jsp" class="fl"><img src="img/logo.jpg" width="175px" height="91px"></a>
+			<a href="index.jsp" class="fl"><img src="img/logo.jpg" width="120px" height="103px"></a>
 			<!-- table height="10px" border="0" cellspacing="0" cellpadding="0"
 				style="margin-left: 10px; margin-right: 0px;">
 				<tr>

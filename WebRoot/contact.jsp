@@ -49,7 +49,7 @@
 			<br /> 邮编： 200122
 			<br /> 电话： 
 			<br /> 传真： 
-			<br /> 电邮：<a class="email" target="_blank" href="mailto:anhong@anhong.com">anhong@anhong.com</a>
+			<br /> 电邮：<a class="email" target="_blank" href="mailto:hefei@anhongfund.com">hefei@anhongfund.com</a>
 
 		</div>
 

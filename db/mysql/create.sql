@@ -29,7 +29,8 @@ create table if not exists RecommendInfo(
 	recAuthor VARCHAR(255),
 	recTitle VARCHAR(255) not null,
 	recInfo MEDIUMTEXT,
-	recTime TIMESTAMP
+	recTime TIMESTAMP,
+	modifyTime TIMESTAMP	
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #产品表

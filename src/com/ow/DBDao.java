@@ -176,7 +176,7 @@ public class DBDao {
 				author = rs.getString(1);
 				title = rs.getString(2);
 				infoString=rs.getString(3);
-				date = rs.getDate(4);
+				date = new Date(rs.getTimestamp(4).getTime());
 
 				newsInfoDto.setAuthor(author);
 				newsInfoDto.setCreateTime(date);
@@ -691,7 +691,7 @@ public class DBDao {
 		logger.debug("name = "+name);
 		String detail="";
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("select detail from ConfigInfo where name = ?");				
+			PreparedStatement pstmt = conn.prepareStatement("select VVALUE from CONFIG where NNAME = ?");				
 			pstmt.setString(1, name);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()){

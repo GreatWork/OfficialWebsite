@@ -55,7 +55,9 @@
 			ClickLeftMenu('1');
 		} else if (k == 2) {
 			ClickLeftMenu('2');
-		}
+		} else {
+            ClickLeftMenu('1');
+        }
 	});
 </script>
 </head>
@@ -99,7 +101,7 @@
 										</span>
 									</p>
 									<%
-										String[] recommendInfoParagraphs = recommendInfo.getContent().split("\r\n");
+										String[] recommendInfoParagraphs = recommendInfo.getContent().split("\r\n|\n");
 										for (String recommendInfoParagraph:recommendInfoParagraphs){
 									 %>
 									<p style="background: white; text-align: justify; margin: 7.8pt 0cm 0pt; text-justify: inter-ideograph; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0">
@@ -136,7 +138,7 @@
 										</span>
 									</p>
 									<%
-										String[] newsInfoParagraphs = newsInfo.getContent().split("\r\n");
+										String[] newsInfoParagraphs = newsInfo.getContent().split("\r\n|\n");
 										for (String newsInfoParagraph:newsInfoParagraphs){
 									 %>
 									<p style="background: white; text-align: justify; margin: 7.8pt 0cm 0pt; text-justify: inter-ideograph; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0">

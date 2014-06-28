@@ -63,9 +63,10 @@ td p {
 <%
 	DBDao dbDao = new DBDao();
 	dbDao.init();
-	
-	//公司理念
-	String companyPhilosophy=dbDao.getConfigInfoByName("公司理念");
+	//公司简介
+	String companyProfile=dbDao.getConfigInfoByName("公司简介");
+	//投资策略
+	String investmentStrategy=dbDao.getConfigInfoByName("投资策略");
 	//投资经理
 	List<InvestManagerDto> investManagers=dbDao.getInvestManagers();
 	dbDao.close();
@@ -79,37 +80,39 @@ td p {
 		<a href="javascript:void(0);" onclick="ClickLeftMenu('4');"	id="menu04">投研团队</a> 
 	</div>
 	<div id="page01" class="rightcontent wordbox" style="display: none;">
-		<p>
-			&nbsp;&nbsp;上海安洪投资管理有限公司成立于2014年4月。公司由具有20年证券投资经历的李洪波先生发起建立，是一个年轻而富有朝气的资产管理公司。公司创始人李洪波先生具有长期国内著名基金管理公司丰富的投研管理经验，曾担任国联安德盛精选基金经理，管理资金规模近百亿元。
-		</p>
-		<br /> 
-		<p>
-			&nbsp;&nbsp;安洪投资秉承“复利投资，稳健增长”的投资理念，“大胆假设、小心求证、谨慎投资”的投资方法。我们既专注投资于具有广阔成长空间和强大竞争力的成长型企业，也充分重视绝对价值明显低估，具备大量隐形资产的企业投资。
-		</p>
 		<%
-			String[] philosophys=companyPhilosophy.split("\r\n");
-		    for(String philosophy:philosophys){
-		%>
-		<p>
-			&nbsp;&nbsp;<%=philosophy %>
-		</p>
-		<br />
-		<%  }%> 		
+			String[] profileParagraphs = companyProfile.split("\r\n|\n");
+			for (String profileParagraph:profileParagraphs){
+		 %>
+		<p style="background: white; text-align: justify; margin: 7.8pt 0cm 0pt; text-justify: inter-ideograph; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0">
+			<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+				<font face="宋体">
+					<%=profileParagraph %>
+					<span lang="EN-US"><o:p></o:p></span>
+				</font>
+			</span>
+		</p>									 
+		 <%
+			}
+		 %>		 		
 	</div>
 	<div id="page02" class="rightcontent wordbox" style="display: none;">
 		<strong style="font-weight: bolder; color: #0B3953; font-size: 15px;">投资策略</strong>
-		<p>
-			宏观方面的把握。结合宏观面情况确定投资总体方向。股票市场的繁荣与否，与经济形势的总体概况紧密相连。只有总体经济形势把握好了，才能够从一个更广义的角度来看待股票市场的日常波动情况，才有一个明确的方向感。而这个明确的方向感，是坚持价值投资的前提。
-		</p>
-		<br />
-		<p>
-			深入研究公司基本面，确定具体投资标的。在把握了宏观经济政策与形势之后，我们再展开从上而下，从行业到个股的价值分析。把握了经济总体的走势，才能找到一些新兴行业，一些代表将来发展趋势的充满希望的公司。我们不仅专注投资于具有广阔成长空间和强大竞争力的成长型企业，也充分重视绝对价值明显低估具备大量隐形资产的企业投资。
-		</p>
-		<br />
-		<p>
-			根据市场的估值水平及交易气氛确定买卖时机。在充分做好了基本面的研究之后，我们也会回到技术分析中。任何一个股票，都存在着一个比较好的买点和卖点。我们也将根据我们十几年的股市从业经验，来选择正确的买卖时机。
-		</p>
-		<br />
+		<%
+			String[] investmentStrategyParagraphs = investmentStrategy.split("\r\n|\n");
+			for (String investmentStrategyParagraph:investmentStrategyParagraphs){
+		 %>
+		<p style="background: white; text-align: justify; margin: 7.8pt 0cm 0pt; text-justify: inter-ideograph; line-height: 200%; text-indent: 18pt; mso-para-margin-top: .5gd; mso-para-margin-right: 0cm; mso-para-margin-bottom: .0001pt; mso-para-margin-left: 0cm; mso-char-indent-count: 2.0">
+			<span style="font-size: 9pt; line-height: 200%; mso-ascii-font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: 宋体; mso-hansi-theme-font: minor-fareast">
+				<font face="宋体">
+					<%=investmentStrategyParagraph %>
+					<span lang="EN-US"><o:p></o:p></span>
+				</font>
+			</span>
+		</p>									 
+		 <%
+			}
+		 %>
 	</div>
 	<div id="page03" class="rightcontent wordbox" style="display: none;">
 		<table style="width: 100%; text-align: left; vertical-align: top;"

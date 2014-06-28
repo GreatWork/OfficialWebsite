@@ -1,358 +1,42 @@
-[2014-06-27 15:24:43]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoTotalNum -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoTotalNum totalNum=5-----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoByPage -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoByPage -----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoById -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] id = 2
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointTotalNum -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointTotalNum totalNum=1-----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointByPage -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointByPage -----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoById -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum totalNum=1-----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:24:44]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoByPage(DBDao.java:847)
-	at com.ow.test.Test.main(Test.java:26)
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:24:44]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:27)
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
-[2014-06-27 15:24:44]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoTotalNum -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoTotalNum totalNum=5-----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoByPage -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoByPage -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoById -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] id = 2
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointTotalNum -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointTotalNum totalNum=1-----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointByPage -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointByPage -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoById -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum totalNum=1-----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:25:06]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoByPage(DBDao.java:847)
-	at com.ow.test.Test.main(Test.java:26)
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:25:06]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:27)
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
-[2014-06-27 15:25:06]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoTotalNum -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoTotalNum totalNum=5-----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoByPage -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoByPage -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoById -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] id = 2
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointTotalNum -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointTotalNum totalNum=1-----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointByPage -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getViewPointByPage -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getNewsInfoById -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveNewsInfo -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum totalNum=1-----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:27:33]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoByPage(DBDao.java:847)
-	at com.ow.test.Test.main(Test.java:26)
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:27:33]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:27)
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:27:33]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:28)
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
-[2014-06-27 15:27:33]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------begin 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum -----------begin 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum totalNum=1-----------end 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:28:59]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoByPage(DBDao.java:847)
-	at com.ow.test.Test.main(Test.java:27)
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:28:59]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:28)
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:28:59]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:29)
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
-[2014-06-27 15:28:59]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------begin 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum -----------begin 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum totalNum=1-----------end 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:30:03]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoByPage(DBDao.java:847)
-	at com.ow.test.Test.main(Test.java:27)
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:30:03]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:28)
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:30:03]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:29)
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
-[2014-06-27 15:30:03]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
-[2014-06-27 15:30:46]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
-[2014-06-27 15:30:46]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
-[2014-06-27 15:30:46]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------begin 
-[2014-06-27 15:30:46]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:30:46]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum -----------begin 
-[2014-06-27 15:30:46]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum totalNum=1-----------end 
-[2014-06-27 15:30:46]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:30:46]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:30:46]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'creatTime' in 'order clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoByPage(DBDao.java:847)
-	at com.ow.test.Test.main(Test.java:27)
-[2014-06-27 15:30:46]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------begin 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum -----------begin 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum totalNum=1-----------end 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:31:55]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:29)
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:31:55]<ERROR>[com.ow.DBDao:main] com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2985)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1631)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1723)
-	at com.mysql.jdbc.Connection.execSQL(Connection.java:3283)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1332)
-	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1467)
-	at com.ow.DBDao.getRecommendInfoById(DBDao.java:900)
-	at com.ow.test.Test.main(Test.java:30)
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
-[2014-06-27 15:31:55]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------begin 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum -----------begin 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoTotalNum totalNum=1-----------end 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------begin 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] pageIndex=1,pageSize=12
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoByPage -----------end 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getRecommendInfoById -----------begin 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] id = 1
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: getTheNewestFiveRecommendInfo -----------end 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
-[2014-06-27 15:34:52]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
+[2014-06-29 00:16:42]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
+[2014-06-29 00:16:42]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
+[2014-06-29 00:16:42]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------begin 
+[2014-06-29 00:16:42]<DEBUG>[com.ow.DBDao:main] name = 投资策略
+[2014-06-29 00:16:42]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------end 
+[2014-06-29 00:16:42]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
+[2014-06-29 00:16:42]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
+[2014-06-29 00:17:18]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
+[2014-06-29 00:17:18]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
+[2014-06-29 00:17:18]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------begin 
+[2014-06-29 00:17:18]<DEBUG>[com.ow.DBDao:main] name = 投资策略
+[2014-06-29 00:17:18]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------end 
+[2014-06-29 00:17:18]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
+[2014-06-29 00:17:18]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
+[2014-06-29 00:18:20]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
+[2014-06-29 00:18:20]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
+[2014-06-29 00:18:20]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------begin 
+[2014-06-29 00:18:20]<DEBUG>[com.ow.DBDao:main] name = 投资策略
+[2014-06-29 00:18:20]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------end 
+[2014-06-29 00:18:20]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
+[2014-06-29 00:18:20]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
+[2014-06-29 00:19:13]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
+[2014-06-29 00:19:13]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
+[2014-06-29 00:19:13]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------begin 
+[2014-06-29 00:19:13]<DEBUG>[com.ow.DBDao:main] name = 公司简介
+[2014-06-29 00:19:13]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------end 
+[2014-06-29 00:19:13]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
+[2014-06-29 00:19:13]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
+[2014-06-29 00:19:43]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
+[2014-06-29 00:19:44]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
+[2014-06-29 00:19:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------begin 
+[2014-06-29 00:19:44]<DEBUG>[com.ow.DBDao:main] name = 公司简介
+[2014-06-29 00:19:44]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------end 
+[2014-06-29 00:19:44]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
+[2014-06-29 00:19:44]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
+[2014-06-29 00:19:57]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------begin 
+[2014-06-29 00:19:58]<DEBUG>[com.ow.DBDao:main] DBDao:: init -----------end 
+[2014-06-29 00:19:58]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------begin 
+[2014-06-29 00:19:58]<DEBUG>[com.ow.DBDao:main] name = 投资策略
+[2014-06-29 00:19:58]<DEBUG>[com.ow.DBDao:main] DBDao:: getConfigInfoByName -----------end 
+[2014-06-29 00:19:58]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------begin 
+[2014-06-29 00:19:58]<DEBUG>[com.ow.DBDao:main] DBDao:: close -----------end 
