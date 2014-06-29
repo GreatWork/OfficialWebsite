@@ -542,7 +542,7 @@ public class DBDao {
 				newsInfo.setAuthor(rs.getString(1));
 				newsInfo.setTitle(rs.getString(2));
 				newsInfo.setContent(rs.getString(3));
-				newsInfo.setCreateTime(rs.getDate(4));
+				newsInfo.setCreateTime(new Date(rs.getTimestamp(4).getTime()));
 			}
 			rs.close();
 			pstmt.close();
@@ -645,7 +645,7 @@ public class DBDao {
 				recommendInfo.setAuthor(rs.getString(1));
 				recommendInfo.setTitle(rs.getString(2));
 				recommendInfo.setContent(rs.getString(3));
-				recommendInfo.setCreateTime(rs.getDate(4));				
+				recommendInfo.setCreateTime(new Date(rs.getTimestamp(4).getTime()));				
 			}			
 			rs.close();
 			pstmt.close();
