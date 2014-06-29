@@ -7,8 +7,8 @@ create table if not exists NewsInfo(
 	author VARCHAR(255),
 	title VARCHAR(255) not null,
 	content TEXT,
-	creatTime TIMESTAMP,
-	modifyTime TIMESTAMP
+	modifyTime TIMESTAMP,
+	creatTime TIMESTAMP
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #视点表,公司发布的分析报告
@@ -29,8 +29,8 @@ create table if not exists RecommendInfo(
 	recAuthor VARCHAR(255),
 	recTitle VARCHAR(255) not null,
 	recInfo MEDIUMTEXT,
-	recTime TIMESTAMP,
-	modifyTime TIMESTAMP	
+	modifyTime TIMESTAMP,
+	recTime TIMESTAMP	
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #产品表
